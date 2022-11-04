@@ -1,0 +1,36 @@
+Blessing/Curse
+Weapon change
+Health/Mana
+Timer
+5 Levels
+Art needed:
+	Enviorment:
+		Stone texture/mesh
+		Floor/Walls
+		Buildings
+		Lamps
+		Props
+		Stairs
+		Water
+	Weapons:
+		Swords
+		Axe
+		Bow
+		Spear
+		Knife
+		Staff
+		Wand
+		Hammer
+		Mace
+	Projectiles:
+		Fire/Ice
+	Enemies:
+		Skeleton
+		Knight
+		Archer
+		Mage
+		Warrior
+		Royal Guard
+	GUI
+		Dark Brown Variant
+		Crosshairs

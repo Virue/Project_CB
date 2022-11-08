@@ -196,6 +196,11 @@ MonoBehaviour:
   myRig: {fileID: 101266638}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 963194227}
 --- !u!137 &101266643
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -327,6 +332,11 @@ MonoBehaviour:
   myRig: {fileID: 0}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 0}
 --- !u!1001 &309228222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,6 +379,10 @@ PrefabInstance:
     - target: {fileID: 5808996833437370789, guid: 1fb36f7bfff6ec64cad0450009c0761a, type: 3}
       propertyPath: m_Name
       value: Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808996833437370789, guid: 1fb36f7bfff6ec64cad0450009c0761a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6564449572035534714, guid: 1fb36f7bfff6ec64cad0450009c0761a, type: 3}
       propertyPath: m_RootOrder
@@ -646,6 +660,11 @@ MonoBehaviour:
   myRig: {fileID: 436892726}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 0}
 --- !u!1001 &485508665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1001,6 +1020,11 @@ MonoBehaviour:
   myRig: {fileID: 0}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 0}
 --- !u!54 &606205736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1286,6 +1310,11 @@ MonoBehaviour:
   myRig: {fileID: 0}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 0}
 --- !u!137 &781616471
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1496,6 +1525,10 @@ PrefabInstance:
     - target: {fileID: 1948329710155509286, guid: 38283d0f2f9588c4a90e9a27a86fdbdc, type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948329710155509286, guid: 38283d0f2f9588c4a90e9a27a86fdbdc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1948329710155936256, guid: 38283d0f2f9588c4a90e9a27a86fdbdc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1725,6 +1758,10 @@ PrefabInstance:
     - target: {fileID: 4453082654697664102, guid: 44736bd0a8b35b1438aa1c3f8b96b977, type: 3}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453082654697664102, guid: 44736bd0a8b35b1438aa1c3f8b96b977, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4665943609997497073, guid: 44736bd0a8b35b1438aa1c3f8b96b977, type: 3}
       propertyPath: m_IsActive
@@ -1978,6 +2015,11 @@ MonoBehaviour:
   myRig: {fileID: 0}
   speed: 5
   maxspeed: 10
+  lookspeedX: 2
+  lookspeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  playercamera: {fileID: 0}
 --- !u!54 &1837489369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2229,6 +2271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 6880901488789346670, guid: 8b0ed2bc94ddb3b43866e9d4f3f135d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b0ed2bc94ddb3b43866e9d4f3f135d9, type: 3}
 --- !u!4 &2060188677 stripped
@@ -2246,6 +2292,10 @@ PrefabInstance:
     - target: {fileID: 1948535115976630, guid: f7902c99c75cad34f934860c6b6ddd9e, type: 3}
       propertyPath: m_Name
       value: Low Poly Warrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948535115976630, guid: f7902c99c75cad34f934860c6b6ddd9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028250183184810, guid: f7902c99c75cad34f934860c6b6ddd9e, type: 3}
       propertyPath: m_RootOrder

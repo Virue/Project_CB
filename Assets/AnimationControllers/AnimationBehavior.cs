@@ -10,11 +10,25 @@ public class AnimationBehavior : MonoBehaviour
     public float maxspeed = 10.0f;
     bool canJump = true;
     bool CollisionUnder = false;
+
+    [Header("Look Parameters")]
+    [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
+    [SerializeField, Range(1, 10)] private float lookspeedY = 2.0f;
+    [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
+    [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
+
+    public Camera playercamera;
+
+    private float rotationX = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        playercamera.GetComponentInChildren<Camera>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -27,9 +41,17 @@ public class AnimationBehavior : MonoBehaviour
         }
 
     }
+    private void HandleCameraLook()
+    {
+        rotationX -= Input.GetAxis("Mouse Y") * lookspeedY;
+        rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
+        playercamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0,Input.GetAxis("Mouse X")*lookspeedX,0);
+    }
     // Update is called once per frame
     void Update()
     {
+        HandleCameraLook();
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");

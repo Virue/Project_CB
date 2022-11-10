@@ -14,8 +14,8 @@ public class AnimationBehavior : MonoBehaviour
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
     [SerializeField, Range(1, 10)] private float lookspeedY = 2.0f;
-    [SerializeField, Range(1, 180)] private float upperLookLimit = 80.0f;
-    [SerializeField, Range(1, 180)] private float lowerLookLimit = 80.0f;
+    [SerializeField, Range(1, 180)] private float upperLookLimit = 1.0f;
+    [SerializeField, Range(1, 180)] private float lowerLookLimit = 1.0f;
 
     public Camera playercamera;
 
@@ -51,12 +51,14 @@ public class AnimationBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         HandleCameraLook();
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         anim.SetFloat("Speed", Input.GetAxis("Vertical"));
         anim.SetFloat("Direction", Input.GetAxis("Horizontal"));
+        Debug.Log("The Direction variable = "+ h);
         RaycastHit info;
         if (Physics.Raycast(this.transform.position, this.transform.up * -1, out info))
         {
@@ -87,22 +89,23 @@ public class AnimationBehavior : MonoBehaviour
             anim.SetBool("Fall", false);
         }
        
-            if (v > 0.1)
+            if (v > 0.15)
             {
                 myRig.velocity = transform.forward * speed + new Vector3(0, myRig.velocity.y, 0);
             }
-            if (v < -0.1)
+            if (v < -0.15)
             {
                 myRig.velocity = -transform.forward * speed + new Vector3(0, myRig.velocity.y, 0);
             }
-            if (h > 0)
+            if (h > 0.15)
             {
-                transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * 50, Space.World);
+                myRig.velocity = transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
             }
-            if (h < 0)
+            if (h < -0.15)
             {
-                transform.Rotate(new Vector3(0, -1, 0) * Time.deltaTime * 50, Space.World);
+                myRig.velocity = -transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
             }
+            
         
 
 

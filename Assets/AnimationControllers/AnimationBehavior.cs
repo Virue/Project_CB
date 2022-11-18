@@ -6,10 +6,26 @@ public class AnimationBehavior : MonoBehaviour
 {
     Animator anim;
     public Rigidbody myRig;
+    
+    public GameObject SwordRender;
+    public GameObject AxeRender;
+    public GameObject MaceRender;
+    public GameObject BowRender;
+    public GameObject WandRender;
+    public GameObject StaffRender;
+    public GameObject myPrefab;
+    public GameObject myPrefabice;
+    public GameObject myPrefabArrow;
     public float speed = 5.0f;
     public float maxspeed = 10.0f;
+    public float reset=0.0f;
     bool canJump = true;
     bool CollisionUnder = false;
+    public bool melee=true;
+    public bool magic = false;
+    public bool Bow = true;
+    public bool fire = false;
+    public bool ice = false;
 
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
@@ -26,9 +42,24 @@ public class AnimationBehavior : MonoBehaviour
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        SwordRender = GameObject.Find("SwordRender");
+        AxeRender = GameObject.Find("AxeRender");
+        MaceRender = GameObject.Find("MaceRender");
+        BowRender = GameObject.Find("BowRender");
+        WandRender = GameObject.Find("WandRender");
+        StaffRender = GameObject.Find("StaffRender");
+
         playercamera.GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SwordRender.SetActive(true);
+        AxeRender.SetActive(false);
+        MaceRender.SetActive(false);
+        BowRender.SetActive(false);
+        WandRender.SetActive(false);
+        StaffRender.SetActive(false);
+        anim.SetBool("Bow", false);
+        anim.SetBool("Magic", false);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -51,7 +82,8 @@ public class AnimationBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        anim.GetAnimatorTransitionInfo(0);
         HandleCameraLook();
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
@@ -67,16 +99,85 @@ public class AnimationBehavior : MonoBehaviour
                 CollisionUnder = true;
             }
         }
+        if (reset>0.0f)
+        {
+            reset-= Time.deltaTime;
+        }
         if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Attack");
-            myRig.velocity = Vector3.zero+ new Vector3(0, myRig.velocity.y, 0);
+            if(melee) 
+            {
+                anim.SetBool("Bow",false);
+                anim.SetBool("Magic", false);
+                anim.SetTrigger("Attack");
+                myRig.velocity = Vector3.zero+ new Vector3(0, myRig.velocity.y, 0);
+            }
+            if(melee!=true) 
+            {
+                if (Bow)
+                {
+                    anim.SetBool("Bow", true);
+                    anim.SetTrigger("Attack");
+                    myRig.velocity = Vector3.zero + new Vector3(0, myRig.velocity.y, 0);
+                    GameObject p = Instantiate(myPrefabArrow, this.transform.localPosition, transform.rotation);
+                    Rigidbody pRig = p.GetComponent<Rigidbody>();
+                    pRig.position = myRig.transform.position -myRig.transform.right *0.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
+                    p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                }
+                if (reset <= 0)
+                {
+                    if (magic && fire)
+                    {
+                        anim.SetBool("Magic", true);
+                        anim.SetTrigger("Attack");
+                        myRig.velocity = Vector3.zero + new Vector3(0, myRig.velocity.y, 0);
+                        GameObject p = Instantiate(myPrefab, this.transform.localPosition, transform.rotation);
+                        Rigidbody pRig = p.GetComponent<Rigidbody>();
+                        pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
+                        p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        reset = 60;
+                    }
+                    else
+                    if (magic && ice)
+                    {
+                        anim.SetBool("Magic", true);
+                        anim.SetTrigger("Attack");
+                        myRig.velocity = Vector3.zero + new Vector3(0, myRig.velocity.y, 0);
+                        GameObject p = Instantiate(myPrefabice, this.transform.localPosition, transform.rotation);
+                        Rigidbody pRig = p.GetComponent<Rigidbody>();
+                        pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
+                        p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        reset = 60;
+                    }
+                }
+                else 
+                {
+                    Debug.Log("Magic not ready");
+                }
+            }
+            
+
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            SwordRender.SetActive(false);
+            AxeRender.SetActive(false);
+            MaceRender.SetActive(false);
+            BowRender.SetActive(false);
+            WandRender.SetActive(false);
+            StaffRender.SetActive(true);
+            ice = true;
+            fire = false;
+            melee = false;
+            magic = true;
+            Bow = false;
 
         }
         if (Input.GetAxisRaw("Jump") > 0 && canJump == true)
         {
             canJump = false;
-            myRig.velocity += new Vector3(myRig.velocity.x, 3, 0);
+            myRig.velocity = new Vector3(myRig.velocity.x, 5, 0);
             anim.SetBool("Jump", true);
         }
         if (myRig.velocity.y < -1)

@@ -6,7 +6,7 @@ public class AnimationBehavior : MonoBehaviour
 {
     Animator anim;
     public Rigidbody myRig;
-    
+    PlayerController myControl;
     public GameObject SwordRender;
     public GameObject AxeRender;
     public GameObject MaceRender;
@@ -20,7 +20,7 @@ public class AnimationBehavior : MonoBehaviour
     public float maxspeed = 10.0f;
     public float reset=0.0f;
     bool canJump = true;
-    bool CollisionUnder = false;
+    public bool CollisionUnder = false;
     public bool melee=true;
     public bool magic = false;
     public bool Bow = true;
@@ -42,6 +42,7 @@ public class AnimationBehavior : MonoBehaviour
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        myControl = new PlayerController();
         SwordRender = GameObject.Find("SwordRender");
         AxeRender = GameObject.Find("AxeRender");
         MaceRender = GameObject.Find("MaceRender");
@@ -82,8 +83,7 @@ public class AnimationBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        anim.GetAnimatorTransitionInfo(0);
+        myControl.ManaRegen();
         HandleCameraLook();
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
@@ -114,7 +114,7 @@ public class AnimationBehavior : MonoBehaviour
             }
             if(melee!=true) 
             {
-                if (Bow)
+                if (Bow && myControl.ammo>0)
                 {
                     anim.SetBool("Bow", true);
                     anim.SetTrigger("Attack");
@@ -123,10 +123,11 @@ public class AnimationBehavior : MonoBehaviour
                     Rigidbody pRig = p.GetComponent<Rigidbody>();
                     pRig.position = myRig.transform.position -myRig.transform.right *0.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                     p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                    myControl.ammo -= 1;
                 }
                 if (reset <= 0)
                 {
-                    if (magic && fire)
+                    if (magic && fire && myControl.mana>0)
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -135,10 +136,11 @@ public class AnimationBehavior : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
-                        reset = 60;
+                        myControl.mana -= 5;
+                        reset = 5;
                     }
                     else
-                    if (magic && ice)
+                    if (magic && ice && myControl.mana > 0)
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -147,7 +149,8 @@ public class AnimationBehavior : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
-                        reset = 60;
+                        reset = 5;
+                        myControl.mana -= 5;
                     }
                 }
                 else 
@@ -206,8 +209,8 @@ public class AnimationBehavior : MonoBehaviour
             {
                 myRig.velocity = -transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
             }
-            
         
+
 
 
     }

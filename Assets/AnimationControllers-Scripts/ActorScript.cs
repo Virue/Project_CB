@@ -8,6 +8,7 @@ public class ActorScript : MonoBehaviour
     Vector3 goal2;
     Vector3 player;
     Animator anim;
+    public float reset;
     UnityEngine.AI.NavMeshAgent myNav = null;
     public Rigidbody myRig;
     public Rigidbody playerRig;
@@ -32,6 +33,16 @@ public class ActorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            myRig.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else 
+        {
+            myRig.constraints = RigidbodyConstraints.None; 
+            myRig.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        }
+        reset -= Time.deltaTime;
         anim.SetFloat("Speed", myRig.velocity.magnitude);
         if (goal > 1)
         {
@@ -45,7 +56,15 @@ public class ActorScript : MonoBehaviour
 
             player = GameObject.Find("Player").transform.position;
             myNav.destination = player;
-
+            if (distancetoPlayer.magnitude <= 2.0f)
+                {
+                if (reset <= 0) 
+                {
+                    anim.SetTrigger("Attack");
+                    reset = 5;
+                }
+                           
+                }
         }
         else
         if (distancetoPlayer.magnitude > 5f)

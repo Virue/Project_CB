@@ -5,10 +5,12 @@ using UnityEngine;
 public class TurretClass : MonoBehaviour
 {
     Vector3 player;
+    public bool dead;
     public GameObject myPrefab;
     Animator anim;
     public float reset;
     UnityEngine.AI.NavMeshAgent myNav = null;
+    LookAtMe lookAt;
     public Rigidbody myRig;
     public Rigidbody playerRig;
     public float right=5.0f;
@@ -19,6 +21,7 @@ public class TurretClass : MonoBehaviour
         myNav = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        lookAt = GetComponent<LookAtMe>();
         playerRig = GameObject.Find("Player").GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform.position;
         myNav.destination = player;
@@ -38,28 +41,40 @@ public class TurretClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            dead = true;
+        }
         myRig.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         reset -= Time.deltaTime;
         anim.SetFloat("Speed", myRig.velocity.magnitude);
         distancetoPlayer = new Vector3(myRig.position.x - playerRig.position.x, 0, myRig.position.z - playerRig.position.z);
-        if (distancetoPlayer.magnitude <= 10f)
+        if (dead != true)
         {
-
-            player = GameObject.Find("Player").transform.position;
-            myNav.destination = player;
-            if (distancetoPlayer.magnitude <= 20.0f)
+            if (distancetoPlayer.magnitude <= 10f)
             {
-                if (reset <= 0)
-                {
-                    anim.SetTrigger("Attack");
-                    GameObject p = Instantiate(myPrefab, this.transform.localPosition, transform.rotation);
-                    Rigidbody pRig = p.GetComponent<Rigidbody>();
-                    pRig.position = myRig.transform.position + myRig.transform.right * right + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
-                    p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
-                    reset = 15;
-                }
 
+                player = GameObject.Find("Player").transform.position;
+                myNav.destination = player;
+                if (distancetoPlayer.magnitude <= 20.0f)
+                {
+                    if (reset <= 0)
+                    {
+                        anim.SetTrigger("Attack");
+                        GameObject p = Instantiate(myPrefab, this.transform.localPosition, transform.rotation);
+                        Rigidbody pRig = p.GetComponent<Rigidbody>();
+                        pRig.position = myRig.transform.position + myRig.transform.right * right + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
+                        p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        reset = 15;
+                    }
+
+                }
             }
         }
+        else 
+        {
+            lookAt.CancelInvoke();
+        }
+        
     }
 }

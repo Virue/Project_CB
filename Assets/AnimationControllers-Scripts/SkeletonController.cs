@@ -24,18 +24,19 @@ public class SkeletonController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && myControl.health!=0)
+        if (other.tag != "Player" && myControl.health > 0)
         {
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
             myControl.health -= 5;
         }
-        if (other.tag != "Player" && myControl.health == 0)
+        
+        if (other.tag != "Player" && myControl.health <= 0)
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetBool("Death", true);
         }
-        
+
     }
     // Update is called once per frame
     void Update()

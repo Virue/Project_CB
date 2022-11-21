@@ -103,6 +103,11 @@ public class AnimationBehavior : MonoBehaviour
         {
             reset-= Time.deltaTime;
         }
+        if (myControl.health < 0)
+        {
+            anim.SetBool("Death", true);
+            myRig.constraints = RigidbodyConstraints.FreezeAll;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if(melee) 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationBehavior : MonoBehaviour
 {
+    SceneController sceneController;
     Animator anim;
     public Rigidbody myRig;
     PlayerController myControl;
@@ -16,6 +17,7 @@ public class AnimationBehavior : MonoBehaviour
     public GameObject myPrefab;
     public GameObject myPrefabice;
     public GameObject myPrefabArrow;
+    
     public float speed = 5.0f;
     public float maxspeed = 10.0f;
     public float reset=0.0f;
@@ -49,6 +51,7 @@ public class AnimationBehavior : MonoBehaviour
         BowRender = GameObject.Find("BowRender");
         WandRender = GameObject.Find("WandRender");
         StaffRender = GameObject.Find("StaffRender");
+        
 
         playercamera.GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,9 +64,13 @@ public class AnimationBehavior : MonoBehaviour
         StaffRender.SetActive(false);
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
+        
+
+
     }
     private void OnTriggerStay(Collider other)
     {
+       
         Vector3 CollisonPoint = other.ClosestPoint(myRig.position);
         if ((other.gameObject.tag == "Floor") && (CollisonPoint - myRig.position).normalized.y < .8)
         {
@@ -71,8 +78,14 @@ public class AnimationBehavior : MonoBehaviour
             anim.SetBool("Jump", false);
             anim.SetBool("Fall", false);
         }
+        if (other.gameObject.tag == "Boon")
+        {
+            Debug.Log("Player Collided with Boon");
+         //   toggleEUI();
+        }
 
     }
+   
     private void HandleCameraLook()
     {
         rotationX -= Input.GetAxis("Mouse Y") * lookspeedY;
@@ -90,7 +103,7 @@ public class AnimationBehavior : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         anim.SetFloat("Speed", Input.GetAxis("Vertical"));
         anim.SetFloat("Direction", Input.GetAxis("Horizontal"));
-        Debug.Log("The Direction variable = "+ h);
+       // Debug.Log("The Direction variable = "+ h);
         RaycastHit info;
         if (Physics.Raycast(this.transform.position, this.transform.up * -1, out info))
         {
@@ -119,7 +132,7 @@ public class AnimationBehavior : MonoBehaviour
             }
             if(melee!=true) 
             {
-                if (Bow && myControl.ammo>0)
+                if (Bow && myControl.ammoCount > 0)
                 {
                     anim.SetBool("Bow", true);
                     anim.SetTrigger("Attack");
@@ -128,11 +141,11 @@ public class AnimationBehavior : MonoBehaviour
                     Rigidbody pRig = p.GetComponent<Rigidbody>();
                     pRig.position = myRig.transform.position -myRig.transform.right *0.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                     p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
-                    myControl.ammo -= 1;
+                    myControl.ammoCount -= 1;
                 }
                 if (reset <= 0)
                 {
-                    if (magic && fire && myControl.mana>0)
+                    if (magic && fire && myControl.Player_Min_MP >0)
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -141,11 +154,11 @@ public class AnimationBehavior : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
-                        myControl.mana -= 5;
+                        myControl.Player_Min_MP -= 5;
                         reset = 5;
                     }
                     else
-                    if (magic && ice && myControl.mana > 0)
+                    if (magic && ice && myControl.Player_Min_MP > 0)
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -155,7 +168,7 @@ public class AnimationBehavior : MonoBehaviour
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
                         reset = 5;
-                        myControl.mana -= 5;
+                        myControl.Player_Min_MP -= 5;
                     }
                 }
                 else 
@@ -214,9 +227,7 @@ public class AnimationBehavior : MonoBehaviour
             {
                 myRig.velocity = -transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
             }
-        
-
-
-
+      
     }
+   
 }

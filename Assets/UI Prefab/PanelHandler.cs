@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEditor.SearchService;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PanelHandler : MonoBehaviour
 {
@@ -14,8 +16,8 @@ public class PanelHandler : MonoBehaviour
     void Start()
     {
         p1= transform.Find("MainMenuCanvas").gameObject as GameObject;
-        p2= transform.Find("PlayerHUD").gameObject as GameObject; 
-        p3= transform.Find("End Screen").gameObject as GameObject; 
+        p2= transform.Find("Directions").gameObject as GameObject;
+        p3 = transform.Find("Credits").gameObject as GameObject;
         p1.SetActive(true);
         p2.SetActive(false);
         p3.SetActive(false);
@@ -23,9 +25,7 @@ public class PanelHandler : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-        
+    {      
     }
     public void setPanel(int p)
     {
@@ -35,45 +35,29 @@ public class PanelHandler : MonoBehaviour
                 p1.SetActive(true);
                 p2.SetActive(false);
                 p3.SetActive(false);
+
                 break;
             case 1:
                 p1.SetActive(false);
                 p2.SetActive(true);
                 p3.SetActive(false);
+
                 break;
             case 2:
                 p1.SetActive(false);
                 p2.SetActive(false);
                 p3.SetActive(true);
+
+                break;
+            case 3:
+                p1.SetActive(false);
+                p2.SetActive(false);
+                p3.SetActive(false);
+
                 break;
             default:
                 break;
         }
     }
-   public IEnumerator EndGame()
-   {
-         yield return new WaitForSeconds(10.0f);
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
-        }
-        else
-        {
-            SceneManager.LoadScene(0);
-        }
-        setPanel(2);
-       
-    }
-   public void startGame()
-   {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        }
-        else
-        {
-            SceneManager.LoadScene(0);
-        }
-        StartCoroutine(EndGame());
-   }
+      
 }

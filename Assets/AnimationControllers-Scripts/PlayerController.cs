@@ -4,41 +4,46 @@ using UnityEngine;
 
 public class PlayerController : Stats
 {
-    public float mana;
-    public float maxMana;
-    public float ammo;
-    public float damageReduction;
-    public float vulnerability;
-    public float Luck;
-    public float lifeSteal;
-    public float manaSap;
-    public float HitTwice;
-    public float Regenreset;
+    public float Player_Min_MP;
+    public float Player_Max_MP;
+    public float ammoCount;
+    public float ammoCountMax;
+    public float Player_DR;
+    public float Player_Vuln;
+    public float Player_Luck;
+    public float Player_LifeSteal;
+    public float Player_ManaSap;
+    public float Player_DS;
+    public float Player_MPR;
+    public float Player_Min_HP;
+    public float Player_Max_HP;
+    public float Player_MS;
     // Start is called before the first frame update
     void Start()
     {
-        mana = 40;
-        maxMana = 40;
-        health = 50;
-        maxHealth = 50;
-        ammo = 0;
-        damageReduction = 0;
-        vulnerability = 0;
-        Luck = 0;
-        lifeSteal = 0;
-        manaSap = 0;
-        HitTwice = 0;
+        Player_Min_MP = 40;
+        Player_Max_MP = 40;
+        Player_Min_HP= health = 50;
+        Player_Max_HP = maxHealth = 50;
+        ammoCount = 0;
+        ammoCountMax= 0;
+        Player_DR = 0;
+        Player_Vuln = 0;
+        Player_Luck = 0;
+        Player_LifeSteal = 0;
+        Player_ManaSap = 0;
+        Player_DS = 0;
     }
     public void ManaRegen()
     {
-        if (Regenreset > 0)
+        if (Player_MPR > 0)
         {
-            Regenreset -= Time.deltaTime;
+            Player_MPR -= Time.deltaTime;
         }
-        if (mana != maxMana && Regenreset <= 0)
+        if (Player_Min_MP != Player_Max_MP && Player_MPR <= 0)
         {
-            mana += 1;
-            Regenreset = 2;
+            Player_Min_MP += 1;
+            Player_MPR = 2;
         }
     }
     // Update is called once per frame

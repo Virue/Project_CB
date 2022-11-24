@@ -43,9 +43,13 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        hpTran.localScale = new Vector3(playerController.Player_Min_HP / (float)playerController.Player_Max_HP, 1, 1);
-        mpTran.localScale = new Vector3(playerController.Player_Min_MP / (float)playerController.Player_Max_MP, 1, 1);
-            
+        if (playerController.Player_Min_HP != playerController.Player_Max_HP)
+        {
+            hpTran.localScale = new Vector3(playerController.Player_Min_HP / (float)playerController.Player_Max_HP, 1f, 1f);
+        }
+        if (playerController.Player_Min_MP != playerController.Player_Max_MP)
+        {
+            mpTran.localScale = new Vector3(playerController.Player_Min_MP / (float)playerController.Player_Max_MP, 1f, 1f);
+        }
     }
 }

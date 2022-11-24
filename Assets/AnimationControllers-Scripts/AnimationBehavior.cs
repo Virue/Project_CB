@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AnimationBehavior : MonoBehaviour
 {
     SceneController sceneController;
     Animator anim;
-    public Rigidbody myRig;
     PlayerController myControl;
+    BoonStats boonStats;
+
+    public Rigidbody myRig;
     public GameObject SwordRender;
     public GameObject AxeRender;
     public GameObject MaceRender;
@@ -17,7 +20,9 @@ public class AnimationBehavior : MonoBehaviour
     public GameObject myPrefab;
     public GameObject myPrefabice;
     public GameObject myPrefabArrow;
-    
+
+    public GameObject pressEUI;
+
     public float speed = 5.0f;
     public float maxspeed = 10.0f;
     public float reset=0.0f;
@@ -44,7 +49,13 @@ public class AnimationBehavior : MonoBehaviour
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        sceneController= GetComponent<SceneController>();
         myControl = new PlayerController();
+        boonStats = gameObject.AddComponent<BoonStats>();
+
+        pressEUI = transform.Find("PressE").gameObject as GameObject;
+        pressEUI.SetActive(false);
+
         SwordRender = GameObject.Find("SwordRender");
         AxeRender = GameObject.Find("AxeRender");
         MaceRender = GameObject.Find("MaceRender");
@@ -54,8 +65,8 @@ public class AnimationBehavior : MonoBehaviour
         
 
         playercamera.GetComponentInChildren<Camera>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
         SwordRender.SetActive(true);
         AxeRender.SetActive(false);
         MaceRender.SetActive(false);
@@ -65,6 +76,8 @@ public class AnimationBehavior : MonoBehaviour
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
         
+
+
 
 
     }
@@ -78,14 +91,21 @@ public class AnimationBehavior : MonoBehaviour
             anim.SetBool("Jump", false);
             anim.SetBool("Fall", false);
         }
+        
+    }
+    public void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.tag == "Boon")
         {
             Debug.Log("Player Collided with Boon");
-         //   toggleEUI();
+            boonStats.getBlessing();
+            Debug.Log("Boon");
+           // pressEUI.SetActive(true);
+           // Debug.Log("UI");
         }
-
     }
-   
+
+
     private void HandleCameraLook()
     {
         rotationX -= Input.GetAxis("Mouse Y") * lookspeedY;

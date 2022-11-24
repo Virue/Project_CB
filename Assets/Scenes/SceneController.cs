@@ -14,7 +14,7 @@ public class SceneController : MonoBehaviour
     public bool beenUsed = false;
     public GameObject playerHUD;
     public GameObject scoreScreen;
-    public GameObject pressEUI;
+    //public GameObject pressEUI;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +22,10 @@ public class SceneController : MonoBehaviour
        // playerStats= new PlayerStats();
         playerHUD = transform.Find("PlayerHUD").gameObject as GameObject;
         scoreScreen = transform.Find("End Screen").gameObject as GameObject;
-        pressEUI = transform.Find("Press E").gameObject as GameObject;
+       // pressEUI = transform.Find("PressE").gameObject as GameObject;
         playerHUD.SetActive(false);
         scoreScreen.SetActive(false);
-        pressEUI.SetActive(false);
+       // pressEUI.SetActive(false);
         Debug.Log("start");
         Debug.Log("The scene name for the first scene is " + SceneManager.GetSceneAt(0).name);
         SceneManager.sceneLoaded += SceneChanger;
@@ -97,23 +97,8 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(0, LoadSceneMode.Single);//Or whatever index you want.
         Debug.Log("Loaded game scene");
     }
-    // player collides with sphere Collider for Boon
-    //use the press e UI to pop up
-    public void toggleEUI()
-    {
-      pressEUI.SetActive(true);
    
-    }
-    /*
- public void OnTriggerStay(Collider other)
-{
-    Debug.Log("Player Collided with Boon Scene Saw it");
-    Vector3 CollisonPoint = other.ClosestPoint(animationBehavior.myRig.position);
-    if ((other.gameObject.tag == "Boon") && (CollisonPoint - animationBehavior.myRig.position).normalized.y < .8)
-    {
-            pressEUI.SetActive(true);
-    }
-}
- */
+   
+   
 
 }

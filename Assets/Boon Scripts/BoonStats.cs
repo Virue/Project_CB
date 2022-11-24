@@ -45,36 +45,84 @@ public class BoonStats : MonoBehaviour
 
     public float BoonNum;
     public float groupNum;
-    public float blessingNum;
-    public float curseNum;
+    
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
+     
     public void getBlessing()
     {
         BoonNum = Random.Range(0, 100);
         if (BoonNum>90)
         {
             Debug.Log("Pull from group G10");
-
-        }else if (BoonNum > 70)
+            groupNum= Random.Range(0, 100);
+            if (groupNum > 50)
+            {
+                Blessing_Enemy_Max_HP += Random.Range(5, 25); //percent
+            }
+            else
+            {
+                Blessing_Enemy_Damage += Random.Range(1, 15); //percent
+            }
+        }
+        else if (BoonNum > 70)
         {
             Debug.Log("Pull from group G9");
             if (BoonNum > 78)
             {
                 Debug.Log("Pull from group G7");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Blessing_Player_Damage_Reduction += Random.Range(1, 80); //percent
+                }
+                else
+                {
+                    Blessing_Player_Vulnerable += Random.Range(1, 75);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G8");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 75)
+                {
+                    groupNum = Random.Range(0, 100);
+                    if (groupNum > 50)
+                    {
+                        Blessing_Player_LifeSteal += Random.Range(5, 25);
+                    }
+                    else
+                    {
+                        Blessing_Player_LifeSteal += Random.Range(2, 10);// percent
+                    }
+                } 
+                else if (groupNum >50)
+                {
+                    groupNum = Random.Range(0, 100);
+                    if (groupNum > 50)
+                    {
+                        Blessing_Player_ManaSap += Random.Range(5, 30);
+                    }
+                    else
+                    {
+                        Blessing_Player_ManaSap += Random.Range(1, 15);//percent
+                    }
+                } 
+                else if (groupNum >25) {
+                    Blessing_Player_MoveSpeed += Random.Range(1, 20);// percent
+                } 
+                else {
+                    Blessing_Player_DoubleStrike += Random.Range(15, 60); // percent
+                }
             }
         }
         else if (BoonNum > 40)
@@ -83,15 +131,36 @@ public class BoonStats : MonoBehaviour
             if (BoonNum > 59)
             {
                 Debug.Log("Pull from group G4");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Blessing_Player_Burn += Random.Range(1, 15);//percent
+                }
+                else
+                {
+                    Blessing_Player_ManaCost += Random.Range(1, 20);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G5");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 66)
+                {
+                    Blessing_Player_Attack += Random.Range(5, 200);
+                } 
+                else if (groupNum >33) {
+                    Blessing_Player_Attack += Random.Range(5, 30);//percent
+                } 
+                else {
+                    Blessing_Player_Slow += Random.Range(1, 20);//percent
+                }
             }
         }
         else if (BoonNum > 35)
         {
             Debug.Log("Pull from group G11");
+            Blessing_Player_Luck += Random.Range(1,5);
         }
         else if (BoonNum > 0)
         {
@@ -99,10 +168,38 @@ public class BoonStats : MonoBehaviour
             if (BoonNum > 17)
             {
                 Debug.Log("Pull from group G1");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 75)
+                {
+                    Blessing_Player_HP += Random.Range(15, 50);
+                }
+                else if (groupNum > 50) {
+                    Blessing_Player_HP += Random.Range(5, 20);//percent
+                }
+                else if (groupNum > 25) {
+                    Blessing_Player_Max_HP += Random.Range(10, 100);
+                }
+                else {
+                    Blessing_Player_Max_HP += Random.Range(10, 50);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G2");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 75)
+                {
+                    Blessing_Player_MP += Random.Range(15, 60);
+                }
+                else if (groupNum>50) {
+                    Blessing_Player_MP += Random.Range(5, 40);//percent
+                } 
+                else if (groupNum > 25) {
+                    Blessing_Player_Max_MP += Random.Range(10, 100);
+                }
+                else {
+                    Blessing_Player_Max_MP += Random.Range(5, 30);//percent
+                }
             }
         }
     }

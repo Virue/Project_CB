@@ -5,17 +5,22 @@ using UnityEngine;
 public class ArcherController : MonoBehaviour
 {
     EnemyController myControl;
-    Animator anim;
+    public Animator anim;
     public Rigidbody myRig;
+    public AnimationBehavior playerRig;
+    public float Enemydamage;
     // Start is called before the first frame update
     void Start()
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        playerRig = GameObject.Find("Player").GetComponent<AnimationBehavior>();
         myControl = new EnemyController();
         myControl.health = 30;
         myControl.maxHealth = 30;
         myControl.damageReduction = 0.05f;
+        myControl.Enemy_Attack = 7;
+        Enemydamage = myControl.Enemy_Attack;
         myControl.vulnerable = 0.05f;
         myControl.burn = 4;
         myControl.slow = 0.05f;
@@ -26,17 +31,18 @@ public class ArcherController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && myControl.health <= 0)
+        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health <= 0)
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetBool("Death", true);
         }
         else
-        if (other.tag != "Player" && myControl.health > 0)
+        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health > 0)
         {
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
-            myControl.health -= 5;
+            myControl.health -= playerRig.damage;
+            Debug.Log("Damage Taken " + playerRig.damage);
         }
 
     }

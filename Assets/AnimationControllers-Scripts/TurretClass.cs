@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TurretClass : MonoBehaviour
 {
+    public GameObject focus = null;
     Vector3 player;
     public bool dead;
     public GameObject myPrefab;
@@ -51,6 +52,10 @@ public class TurretClass : MonoBehaviour
         distancetoPlayer = new Vector3(myRig.position.x - playerRig.position.x, 0, myRig.position.z - playerRig.position.z);
         if (dead != true)
         {
+            if (focus != null)
+            {
+                this.transform.LookAt(focus.transform);
+            }
             if (distancetoPlayer.magnitude <= 10f)
             {
 
@@ -73,7 +78,7 @@ public class TurretClass : MonoBehaviour
         }
         else 
         {
-            lookAt.CancelInvoke();
+            
         }
         
     }

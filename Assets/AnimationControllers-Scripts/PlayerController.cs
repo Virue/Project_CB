@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PlayerController : Stats
 {
-    public float Player_Min_MP;
-    public float Player_Max_MP;
-    public float ammoCount;
-    public float ammoCountMax;
-    public float Player_DR;
-    public float Player_Vuln;
-    public float Player_Luck;
-    public float Player_LifeSteal;
-    public float Player_ManaSap;
-    public float Player_DS;
-    public float Player_MPR;
-    public float Player_Min_HP;
-    public float Player_Max_HP;
-    public float Player_MS;
+    public float Player_Min_MP=40;
+    public float Player_Max_MP=4;
+    public float ammoCount=0;
+    public float ammoCountMax=0;
+    public float Player_DR=0;
+    public float Player_Vuln=0;
+    public float Player_Luck=0;
+    public float Player_LifeSteal=0;
+    public float Player_ManaSap=0;
+    public float Player_DS=0;
+    public float Player_MPR=0;
+    public float Player_Min_HP=50;
+    public float Player_Max_HP=50;
+    public float Player_MS=5.0f;
     // Start is called before the first frame update
     void Start()
     {

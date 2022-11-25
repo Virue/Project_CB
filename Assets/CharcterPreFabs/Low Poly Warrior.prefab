@@ -2825,6 +2825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3484464551181134930}
+  - component: {fileID: 6366708929396282848}
   m_Layer: 0
   m_Name: palm.03.R
   m_TagString: Untagged
@@ -2848,6 +2849,20 @@ Transform:
   m_Father: {fileID: 3478360582274848312}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6366708929396282848
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481716233815588078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4392267498953536619, guid: 2b89f623a226f1443b656df4d7506e98, type: 3}
 --- !u!1 &3481719083701909284
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,9 +33,11 @@ public class ActorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;
+            goal1 = myRig.position;
+            myNav.destination = goal1;
         }
         else 
         {
@@ -51,7 +53,7 @@ public class ActorScript : MonoBehaviour
         }
         distancetoPlayer = new Vector3(myRig.position.x - playerRig.position.x, 0, myRig.position.z - playerRig.position.z);
         
-        if (distancetoPlayer.magnitude <= 5f)
+        if (distancetoPlayer.magnitude <= 5f && !anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
 
             player = GameObject.Find("Player").transform.position;

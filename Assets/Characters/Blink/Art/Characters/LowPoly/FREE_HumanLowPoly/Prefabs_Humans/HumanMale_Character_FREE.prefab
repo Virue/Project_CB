@@ -1371,14 +1371,17 @@ MonoBehaviour:
   myPrefab: {fileID: 4902864358675858938, guid: f9d5c3f985823594dadce1ff91742b04, type: 3}
   myPrefabice: {fileID: 5372575067300646232, guid: 756b7ff2f2896404e879a025f8912fb6, type: 3}
   myPrefabArrow: {fileID: 8852519277381726090, guid: e3787be58bd99af49b6d984cca640c3b, type: 3}
+  pressEUI: {fileID: 0}
   speed: 5
   maxspeed: 10
   reset: 0
+  CollisionUnder: 0
   melee: 1
   magic: 0
   Bow: 0
   fire: 0
   ice: 0
+  damage: 0
   lookspeedX: 2
   lookspeedY: 2
   upperLookLimit: 20
@@ -3311,7 +3314,7 @@ GameObject:
   - component: {fileID: 1836867447}
   m_Layer: 0
   m_Name: AxeRender
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6459,7 +6462,7 @@ GameObject:
   - component: {fileID: 674201386}
   m_Layer: 0
   m_Name: MaceRender
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6605,7 +6608,7 @@ GameObject:
   - component: {fileID: 1291125552}
   m_Layer: 0
   m_Name: SwordRender
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

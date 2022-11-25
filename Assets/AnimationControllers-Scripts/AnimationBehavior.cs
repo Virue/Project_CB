@@ -8,6 +8,11 @@ public class AnimationBehavior : MonoBehaviour
     SceneController sceneController;
     Animator anim;
     PlayerController myControl;
+    SkeletonController skeletonController;
+    ArcherController archerController;
+    KnightController knightController;
+    MageController mageController;
+    BossController bossController;
     BoonStats boonStats;
 
     public Rigidbody myRig;
@@ -33,7 +38,8 @@ public class AnimationBehavior : MonoBehaviour
     public bool Bow = true;
     public bool fire = false;
     public bool ice = false;
-
+    public float damage;
+    public float health;
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
     [SerializeField, Range(1, 10)] private float lookspeedY = 2.0f;
@@ -52,7 +58,7 @@ public class AnimationBehavior : MonoBehaviour
         sceneController= GetComponent<SceneController>();
         myControl = new PlayerController();
         boonStats = gameObject.AddComponent<BoonStats>();
-
+        damage = 15;
         pressEUI = transform.Find("PressE").gameObject as GameObject;
         pressEUI.SetActive(false);
 
@@ -95,6 +101,7 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Player health "+myControl.Player_Min_HP);
         if (other.gameObject.tag == "Boon")
         {
             Debug.Log("Player Collided with Boon");
@@ -103,8 +110,72 @@ public class AnimationBehavior : MonoBehaviour
            // pressEUI.SetActive(true);
            // Debug.Log("UI");
         }
-    }
+        if (other.gameObject.tag == "SkeletonWeapon")
+        {
+            Debug.Log("Player Hit by Skeleton");
+            skeletonController = GameObject.Find("Skeleton").GetComponent<SkeletonController>();
+            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            { 
+                myControl.Player_Min_HP -= skeletonController.Enemydamage;
+                Debug.Log("Player took "+skeletonController.Enemydamage);
+            }
+            
+        }
+        if (other.gameObject.tag == "FireBall")
+        {
+            Debug.Log("Player Hit by Mage");
+            mageController = GameObject.Find("Mage").GetComponent<MageController>();
+            if (mageController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                myControl.Player_Min_HP -= mageController.Enemydamage;
+                Debug.Log("Player took " + mageController.Enemydamage);
+            }
+            
+        }
+        if (other.gameObject.tag == "Arrow")
+        {
+            Debug.Log("Player Hit by Archer");
+            archerController = GameObject.Find("Archer").GetComponent<ArcherController>();
+            if (archerController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                myControl.Player_Min_HP -= archerController.Enemydamage;
+                Debug.Log("Player took " + archerController.Enemydamage);
+            }
+            
+        }
+        if (other.gameObject.tag == "KnightWeapon")
+        {
+            Debug.Log("Player Hit by Knight");
+            knightController = GameObject.Find("Knight").GetComponent<KnightController>();
+            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                myControl.Player_Min_HP -= knightController.Enemydamage;
+                Debug.Log("Player took " + knightController.Enemydamage);
+            }
+            
+        }
+        if (other.gameObject.tag == "BossWeapon")
+        {
+            Debug.Log("Player Hit by Boss");
+            bossController = GameObject.Find("Boss").GetComponent<BossController>();
+            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                myControl.Player_Min_HP -= bossController.Enemydamage;
+                Debug.Log("Player took " + bossController.Enemydamage);
+            }
+            
+        }
 
+
+    }
+    private void die()
+    {
+        if (myControl.Player_Min_HP<=0) 
+        {
+            anim.SetBool("Death", true);
+            Debug.Log("Player Died");
+        }
+    }
 
     private void HandleCameraLook()
     {
@@ -116,6 +187,8 @@ public class AnimationBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health = myControl.Player_Min_HP;
+        die();
         myControl.ManaRegen();
         HandleCameraLook();
         CollisionUnder = false;
@@ -213,6 +286,7 @@ public class AnimationBehavior : MonoBehaviour
             melee = false;
             magic = true;
             Bow = false;
+            damage = 50;
 
         }
         if (Input.GetAxisRaw("Jump") > 0 && canJump == true)

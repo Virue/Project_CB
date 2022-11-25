@@ -6,6 +6,7 @@ public class EnemyController : Stats
 {
     Rigidbody myRig;
     Animator anim;
+    public float Enemy_Attack;
     public float damageReduction;
     public float vulnerable;
     public float burn=0;

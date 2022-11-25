@@ -534,9 +534,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007007471657967799}
+  - component: {fileID: 3424881968897770187}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Right_Hand_Weapon_slot
-  m_TagString: Untagged
+  m_TagString: SkeletonWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,6 +557,20 @@ Transform:
   m_Father: {fileID: 6007007471657967807}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 187.231, y: -0.9750061, z: 95.922}
+--- !u!64 &3424881968897770187
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007007471658204311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 677154472755901971, guid: 1f2df18c8d37e344092e26ad53b0e864, type: 3}
 --- !u!1 &6007007471658204313
 GameObject:
   m_ObjectHideFlags: 0

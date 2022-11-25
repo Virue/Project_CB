@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
     {
         p = GetComponent<Rigidbody>();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         p.velocity = Vector3.zero;
         Destroy(gameObject);

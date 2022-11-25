@@ -206,51 +206,123 @@ public class BoonStats : MonoBehaviour
     public void getCurse()
     {
         BoonNum = Random.Range(0, 100);
-        if (BoonNum > 90)
+        if (BoonNum > 2 && BoonNum <5)
         {
             Debug.Log("Pull from group G10");
-
+            groupNum= Random.Range(0, 100);
+            if (groupNum>50) {
+                Curse_Enemy_Max_HP += Random.Range(5, 15);//percent
+            }
+            else {
+                Curse_Enemy_Damage += Random.Range(1, 15);//percent
+            }
         }
-        else if (BoonNum > 70)
+        else if (BoonNum > 90)
         {
             Debug.Log("Pull from group G9");
-            if (BoonNum > 78)
+            if (BoonNum > 95)
             {
                 Debug.Log("Pull from group G7");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Curse_Player_Damage_Reduction += Random.Range(5, 15);//percent
+                }
+                else
+                {
+                    Curse_Player_Vulnerable += Random.Range(1, 15);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G8");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 75)
+                {
+                    Curse_Player_LifeSteal += Random.Range(1, 90);//percent
+                }
+                else if (groupNum > 50)
+                {
+                    Curse_Player_ManaSap += Random.Range(1, 80);//percent
+                }
+                else if (groupNum > 25)
+                {
+                    Curse_Player_MoveSpeed += Random.Range(1, 7);//percent
+                }
+                else
+                {
+                    Curse_Player_DoubleStrike += Random.Range(1, 10);//percent
+                }
             }
         }
-        else if (BoonNum > 40)
+        else if (BoonNum > 5 && BoonNum <20)
         {
             Debug.Log("Pull from group G6");
             if (BoonNum > 59)
             {
                 Debug.Log("Pull from group G4");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 66)
+                {
+                    Curse_Player_Burn += Random.Range(1, 90);//percent
+                } 
+                else if (groupNum>33) {
+                    Curse_Player_Slow += Random.Range(1, 90);//percent
+                }
+                else {
+                    Curse_Player_ManaCost += Random.Range(1, 90);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G5");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Curse_Player_Attack += Random.Range(1, 90);//percent
+                }
+                else
+                {
+                    Curse_Player_Ammo += Random.Range(1, 90);//percent
+                }
             }
         }
-        else if (BoonNum > 35)
+        else if (BoonNum > 0 && BoonNum <2)
         {
             Debug.Log("Pull from group G11");
+            Curse_Player_Luck += Random.Range(1, 90);//percent
         }
-        else if (BoonNum > 0)
+        else if (BoonNum > 80 && BoonNum<90)
         {
             Debug.Log("Pull from group G3");
             if (BoonNum > 17)
             {
                 Debug.Log("Pull from group G1");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Curse_Player_HP += Random.Range(1, 90);//percent
+                }
+                else
+                {
+                    Curse_Player_Max_HP += Random.Range(1, 90);//percent
+                }
             }
             else
             {
                 Debug.Log("Pull from group G2");
+                groupNum = Random.Range(0, 100);
+                if (groupNum > 50)
+                {
+                    Blessing_Player_MP += Random.Range(1, 90);//percent
+                }
+                else
+                {
+                    Blessing_Player_Max_MP += Random.Range(1, 90);//percent
+                }
             }
         }
+       
     }
 
 }

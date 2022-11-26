@@ -18,7 +18,7 @@ public class SkeletonController : MonoBehaviour
         myControl = new EnemyController();
         myControl.health = 40;
         myControl.maxHealth = 40;
-        myControl.Enemy_Attack = 10;
+        myControl.Enemy_Attack = 1;
         Enemydamage = myControl.Enemy_Attack;
         myControl.damageReduction = 0.0f;
         myControl.vulnerable = 0.05f;
@@ -31,20 +31,26 @@ public class SkeletonController : MonoBehaviour
     {
 
 
-        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health <= 0)
-                {
-                    myRig.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-                    anim.SetBool("Death", true);
-                }
-        else
-        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health > 0)
+        if ((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
             myControl.health -= playerRig.damage;
-            Debug.Log("Damage Taken " + playerRig.damage);
+            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from" + other.name);
         }
-        
+        if ((other.tag == "Fireball" || other.tag == "IceBall") && myControl.health > 0)
+        {
+            myControl.TakeDamage();
+            anim.SetTrigger("Damage");
+            myControl.health -= playerRig.damage;
+            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from" + other.name);
+        }
+        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health <= 0)
+        {
+            myRig.constraints = RigidbodyConstraints.FreezeAll;
+            anim.SetBool("Death", true);
+        }
+
 
     }
     // Update is called once per frame

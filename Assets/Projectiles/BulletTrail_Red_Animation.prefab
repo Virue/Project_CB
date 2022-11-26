@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2358078270317643109}
   m_Layer: 0
   m_Name: test
-  m_TagString: Untagged
+  m_TagString: FireBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

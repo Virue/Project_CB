@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class AnimationBehavior : MonoBehaviour
 {
     SceneController sceneController;
-    Animator anim;
+    public Animator anim;
     PlayerController myControl;
     SkeletonController skeletonController;
     ArcherController archerController;
@@ -40,6 +40,7 @@ public class AnimationBehavior : MonoBehaviour
     public bool ice = false;
     public float damage;
     public float health;
+
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
     [SerializeField, Range(1, 10)] private float lookspeedY = 2.0f;
@@ -59,7 +60,7 @@ public class AnimationBehavior : MonoBehaviour
         myControl = new PlayerController();
         boonStats = gameObject.AddComponent<BoonStats>();
         damage = 15;
-        pressEUI = transform.Find("PressE").gameObject as GameObject;
+        pressEUI = GameObject.Find("Blessing_CurseCanvas"); ;
         pressEUI.SetActive(false);
 
         SwordRender = GameObject.Find("SwordRender");
@@ -101,14 +102,15 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player health "+myControl.Player_Min_HP);
+        
         if (other.gameObject.tag == "Boon")
         {
             Debug.Log("Player Collided with Boon");
+            pressEUI.SetActive(true);
             boonStats.getBlessing();
             Debug.Log("Boon");
-           // pressEUI.SetActive(true);
-           // Debug.Log("UI");
+            //pressEUI.SetActive(true);
+            Debug.Log("UI");
         }
         if (other.gameObject.tag == "SkeletonWeapon")
         {
@@ -125,29 +127,29 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Hit by Mage");
             mageController = GameObject.Find("Mage").GetComponent<MageController>();
-            if (mageController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
+            
+            
                 myControl.Player_Min_HP -= mageController.Enemydamage;
                 Debug.Log("Player took " + mageController.Enemydamage);
-            }
+            
             
         }
         if (other.gameObject.tag == "Arrow")
         {
             Debug.Log("Player Hit by Archer");
             archerController = GameObject.Find("Archer").GetComponent<ArcherController>();
-            if (archerController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
+            
+            
                 myControl.Player_Min_HP -= archerController.Enemydamage;
                 Debug.Log("Player took " + archerController.Enemydamage);
-            }
+            
             
         }
         if (other.gameObject.tag == "KnightWeapon")
         {
             Debug.Log("Player Hit by Knight");
             knightController = GameObject.Find("Knight").GetComponent<KnightController>();
-            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (knightController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 myControl.Player_Min_HP -= knightController.Enemydamage;
                 Debug.Log("Player took " + knightController.Enemydamage);
@@ -158,11 +160,9 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Hit by Boss");
             bossController = GameObject.Find("Boss").GetComponent<BossController>();
-            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
                 myControl.Player_Min_HP -= bossController.Enemydamage;
                 Debug.Log("Player took " + bossController.Enemydamage);
-            }
+            
             
         }
 
@@ -173,6 +173,7 @@ public class AnimationBehavior : MonoBehaviour
         if (myControl.Player_Min_HP<=0) 
         {
             anim.SetBool("Death", true);
+            myControl.Player_Min_HP = 0;
             Debug.Log("Player Died");
         }
     }
@@ -209,7 +210,7 @@ public class AnimationBehavior : MonoBehaviour
         {
             reset-= Time.deltaTime;
         }
-        if (myControl.health < 0)
+        if (myControl.Player_Min_HP < 0)
         {
             anim.SetBool("Death", true);
             myRig.constraints = RigidbodyConstraints.FreezeAll;
@@ -286,7 +287,7 @@ public class AnimationBehavior : MonoBehaviour
             melee = false;
             magic = true;
             Bow = false;
-            damage = 50;
+            damage = 150;
 
         }
         if (Input.GetAxisRaw("Jump") > 0 && canJump == true)

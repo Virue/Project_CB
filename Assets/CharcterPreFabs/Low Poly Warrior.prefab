@@ -2828,7 +2828,7 @@ GameObject:
   - component: {fileID: 6366708929396282848}
   m_Layer: 0
   m_Name: palm.03.R
-  m_TagString: Untagged
+  m_TagString: BossWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2841,8 +2841,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481716233815588078}
   m_LocalRotation: {x: 0.02516263, y: -0.2811454, z: 0.029182691, w: 0.9588913}
-  m_LocalPosition: {x: -0.000049090366, y: 0.00065690815, z: 0.000033012595}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.01825, y: 0.25948, z: 0.0082997}
+  m_LocalScale: {x: 1, y: 0.75864065, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3484186879236449050}
@@ -2862,7 +2862,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4392267498953536619, guid: 2b89f623a226f1443b656df4d7506e98, type: 3}
+  m_Mesh: {fileID: 392552080624847208, guid: b8429e260a2f3c2489982da2e0f2c575, type: 3}
 --- !u!1 &3481719083701909284
 GameObject:
   m_ObjectHideFlags: 0
@@ -3989,6 +3989,9 @@ GameObject:
   - component: {fileID: 3482963697781125053}
   - component: {fileID: 3482963697781125054}
   - component: {fileID: 3482963697781125055}
+  - component: {fileID: 1731663523}
+  - component: {fileID: 1731663524}
+  - component: {fileID: 1731663525}
   m_Layer: 0
   m_Name: Low Poly Warrior
   m_TagString: Untagged
@@ -4005,7 +4008,7 @@ Transform:
   m_GameObject: {fileID: 3482150204297408758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 7.61}
-  m_LocalScale: {x: 1.7949696, y: 1.7949696, z: 1.7949696}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3484382620169186928}
@@ -4082,9 +4085,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a779ab1ee19f8a247ab3f7aa5dec9763, type: 2}
-  - {fileID: 2100000, guid: 3184a7f77f4b37649a71f8a71dcffa12, type: 2}
-  - {fileID: 2100000, guid: 503c6f670c203db48a23fe90bda5f7d8, type: 2}
+  - {fileID: 2100000, guid: 603aa49c288eb5a499ecadfa9d63e3c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4109,7 +4110,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4392267498953536619, guid: 2b89f623a226f1443b656df4d7506e98, type: 3}
+  m_Mesh: {fileID: 392552080624847208, guid: b8429e260a2f3c2489982da2e0f2c575, type: 3}
   m_Bones: []
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3484464551181134930}
@@ -4117,6 +4118,62 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_DirtyAABB: 0
+--- !u!114 &1731663523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482150204297408758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c387daad006f734b85f5f736e24b24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  myRig: {fileID: 0}
+  playerRig: {fileID: 0}
+  Enemydamage: 0
+--- !u!114 &1731663524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482150204297408758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30e132681e0aba4c8f4cfc3cdd9ac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reset: 0
+  myRig: {fileID: 0}
+  playerRig: {fileID: 0}
+  goal: 0
+  goalOne: Goal1
+  goalTwo: Goal2
+--- !u!195 &1731663525
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482150204297408758}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3482155830535655638
 GameObject:
   m_ObjectHideFlags: 0

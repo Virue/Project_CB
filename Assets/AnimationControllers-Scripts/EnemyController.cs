@@ -18,11 +18,11 @@ public class EnemyController : Stats
     }
     public void TakeDamage()
     {
-        Debug.Log("Take damage called EnemyController");
+        
     }
     public void Die()
     { 
-        Debug.Log("Die called");
+        
     }
     // Update is called once per frame
     void Update()

@@ -4893,7 +4893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbabd13a31e132d4e92b347e856d97b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   myRig: {fileID: 0}
+  playerRig: {fileID: 0}
+  Enemydamage: 0
 --- !u!1 &6552864984278996066
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class PlayerController : Stats
     public float Player_Min_HP=50;
     public float Player_Max_HP=50;
     public float Player_MS=5.0f;
-    // Start is called before the first frame update
+    // Start is called before the first frame update+
     void Start()
     {
         Player_Min_MP = 40;

@@ -5,9 +5,12 @@ using UnityEngine;
 public class FireMagicExplosion : MonoBehaviour
 {
     public float time;
+    AudioSource explosion;
     // Start is called before the first frame update
     void Start()
     {
+        explosion = GetComponent<AudioSource>();
+        explosion.Play();
         time = 500;
     }
     

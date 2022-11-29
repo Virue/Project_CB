@@ -9,11 +9,14 @@ public class SkeletonController : MonoBehaviour
     public Rigidbody myRig;
     public AnimationBehavior playerRig;
     public float Enemydamage;
+    AudioSource AudioSource;
+    public AudioClip hit;
     // Start is called before the first frame update
     void Start()
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        AudioSource = GetComponent<AudioSource>();
         playerRig = GameObject.Find("Player").GetComponent<AnimationBehavior>();
         myControl = new EnemyController();
         myControl.health = 40;
@@ -31,22 +34,23 @@ public class SkeletonController : MonoBehaviour
     {
 
 
-        if ((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) || ((other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health > 0))
         {
+            AudioSource.clip = hit;
+            AudioSource.Play();
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
             myControl.health -= playerRig.damage;
-            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from" + other.name);
+            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from " + other.name);
+            if (myControl.health <= 0)
+            {
+                anim.SetBool("Death",true);
+            }
         }
-        if ((other.tag == "Fireball" || other.tag == "IceBall") && myControl.health > 0)
+        
+        if ((other.tag == "PlayerWeapon" || other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health <= 0)
         {
-            myControl.TakeDamage();
-            anim.SetTrigger("Damage");
-            myControl.health -= playerRig.damage;
-            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from" + other.name);
-        }
-        if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health <= 0)
-        {
+            Debug.Log("Skeleton: Death Damage Taken " + playerRig.damage + " from " + other.name);
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             anim.SetBool("Death", true);
         }

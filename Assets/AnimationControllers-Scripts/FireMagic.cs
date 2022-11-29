@@ -6,7 +6,8 @@ public class FireMagic : MonoBehaviour
 {
     public Rigidbody p;
     public GameObject explosion;
-    float speed=3;
+    float speed=8;
+    AudioSource magic;
     // Start is called before the first frame update
     void Start()
     {

@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887714275754484761, guid: 98f5968f30e01894e90ff84933bb9158, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.6553345
+      value: 0.6553955
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f5968f30e01894e90ff84933bb9158, type: 3}
@@ -576,6 +576,7 @@ MonoBehaviour:
   beenUsed: 0
   playerHUD: {fileID: 239862263}
   scoreScreen: {fileID: 455325606}
+  pressEUI: {fileID: 0}
 --- !u!4 &237773972
 Transform:
   m_ObjectHideFlags: 0
@@ -1405,6 +1406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1489,6 +1491,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!82 &705507996
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a583b02986a774f439c5437317ba2f2e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &714710789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,6 +2746,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.33996582
       objectReference: {fileID: 0}
+    - target: {fileID: 4142008063092488637, guid: cdf7d282f0ff0ed44ab88d9b8328ccb9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.70996094
+      objectReference: {fileID: 0}
     - target: {fileID: 4142008063537422797, guid: cdf7d282f0ff0ed44ab88d9b8328ccb9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2905,13 +3007,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3554204894235446747, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.2696533
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554204895146984687, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.4998779
+      objectReference: {fileID: 0}
     - target: {fileID: 3554204895232677392, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 352059515}
     - target: {fileID: 3554204895232677395, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.4000244
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554204895232677395, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.5100174
+      value: -2.5100098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
@@ -2922,6 +3036,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 352059514}
     m_Modifications:
+    - target: {fileID: 8811423699930568443, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5784912
+      objectReference: {fileID: 0}
     - target: {fileID: 8811423700002585302, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3018,5 +3136,32 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 352059515}
+    - target: {fileID: 8811423700620852509, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.5001221
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811423700694668435, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
+      propertyPath: m_text
+      value: 'Assets Used from Unity
+
+        Dark Brown GUI
+
+        Low Poly Character
+        Models Blink and PolyTope Studios and asoliddev
+
+        Enviorment models-BrokenVector,CatBorg
+        Studios, Plutark Games,Gigel
+
+        Particle Effects-MTE Studio
+
+        Sound
+        from Zapsplat.com
+
+        Background Music https://freesound.org/s/42955/'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811423700694668435, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}

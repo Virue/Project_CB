@@ -28,9 +28,17 @@ public class AnimationBehavior : MonoBehaviour
 
     public GameObject pressEUI;
 
+    public AudioSource source;
+    public AudioClip bow;
+    public AudioClip swing;
+    public AudioClip magicFire;
+    public AudioClip magicIce;
+    public AudioClip Hit;
+
     public float speed = 5.0f;
     public float maxspeed = 10.0f;
     public float reset=0.0f;
+    float damagereset=0;
     bool canJump = true;
     public bool CollisionUnder = false;
     public bool melee=true;
@@ -59,10 +67,10 @@ public class AnimationBehavior : MonoBehaviour
         sceneController= GetComponent<SceneController>();
         myControl = new PlayerController();
         boonStats = gameObject.AddComponent<BoonStats>();
+        source = GetComponent<AudioSource>();
         damage = 15;
-        pressEUI = GameObject.Find("Blessing_CurseCanvas"); ;
-        pressEUI.SetActive(false);
-
+        pressEUI = GameObject.Find("Blessing_CurseCanvas");
+        health = myControl.Player_Max_HP;
         SwordRender = GameObject.Find("SwordRender");
         AxeRender = GameObject.Find("AxeRender");
         MaceRender = GameObject.Find("MaceRender");
@@ -82,7 +90,8 @@ public class AnimationBehavior : MonoBehaviour
         StaffRender.SetActive(false);
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
-        
+
+        pressEUI.SetActive(false);
 
 
 
@@ -109,61 +118,73 @@ public class AnimationBehavior : MonoBehaviour
             pressEUI.SetActive(true);
             boonStats.getBlessing();
             Debug.Log("Boon");
-            //pressEUI.SetActive(true);
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+            pressEUI.SetActive(true);
             Debug.Log("UI");
         }
-        if (other.gameObject.tag == "SkeletonWeapon")
+        if (other.gameObject.tag == "SkeletonWeapon" && damagereset<=0)
         {
             Debug.Log("Player Hit by Skeleton");
             skeletonController = GameObject.Find("Skeleton").GetComponent<SkeletonController>();
             if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            { 
+            {
+                source.clip = Hit;
+                source.Play();
                 myControl.Player_Min_HP -= skeletonController.Enemydamage;
                 Debug.Log("Player took "+skeletonController.Enemydamage);
+                damagereset = 1;
             }
             
         }
-        if (other.gameObject.tag == "FireBall")
+        if (other.gameObject.tag == "FireBall" && damagereset <= 0)
         {
             Debug.Log("Player Hit by Mage");
             mageController = GameObject.Find("Mage").GetComponent<MageController>();
-            
-            
+
+                source.clip = Hit;
+                source.Play();
                 myControl.Player_Min_HP -= mageController.Enemydamage;
                 Debug.Log("Player took " + mageController.Enemydamage);
-            
-            
+                damagereset = 1;
+
+
         }
-        if (other.gameObject.tag == "Arrow")
+        if (other.gameObject.tag == "Arrow" && damagereset <= 0)
         {
             Debug.Log("Player Hit by Archer");
             archerController = GameObject.Find("Archer").GetComponent<ArcherController>();
-            
-            
+                source.clip = Hit;
+                source.Play();
                 myControl.Player_Min_HP -= archerController.Enemydamage;
                 Debug.Log("Player took " + archerController.Enemydamage);
-            
-            
+                damagereset = 1;
+
         }
-        if (other.gameObject.tag == "KnightWeapon")
+        if (other.gameObject.tag == "KnightWeapon" && damagereset <= 0)
         {
-            Debug.Log("Player Hit by Knight");
             knightController = GameObject.Find("Knight").GetComponent<KnightController>();
-            if (knightController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
+            
+                Debug.Log("Player Hit by Knight");
+                source.clip = Hit;
+                source.Play();
                 myControl.Player_Min_HP -= knightController.Enemydamage;
                 Debug.Log("Player took " + knightController.Enemydamage);
-            }
-            
+                damagereset = 1;
+
+
         }
-        if (other.gameObject.tag == "BossWeapon")
+        if (other.gameObject.tag == "BossWeapon" && damagereset <= 0)
         {
-            Debug.Log("Player Hit by Boss");
-            bossController = GameObject.Find("Boss").GetComponent<BossController>();
+                Debug.Log("Player Hit by Boss");
+                bossController = GameObject.Find("Boss").GetComponent<BossController>();
+                source.clip = Hit;
+                source.Play();
                 myControl.Player_Min_HP -= bossController.Enemydamage;
                 Debug.Log("Player took " + bossController.Enemydamage);
-            
-            
+                damagereset = 1;
+
+
         }
 
 
@@ -188,7 +209,6 @@ public class AnimationBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = myControl.Player_Min_HP;
         die();
         myControl.ManaRegen();
         HandleCameraLook();
@@ -210,6 +230,10 @@ public class AnimationBehavior : MonoBehaviour
         {
             reset-= Time.deltaTime;
         }
+        if (damagereset > 0.0f)
+        {
+            damagereset -= Time.deltaTime;
+        }
         if (myControl.Player_Min_HP < 0)
         {
             anim.SetBool("Death", true);
@@ -223,6 +247,8 @@ public class AnimationBehavior : MonoBehaviour
                 anim.SetBool("Magic", false);
                 anim.SetTrigger("Attack");
                 myRig.velocity = Vector3.zero+ new Vector3(0, myRig.velocity.y, 0);
+                source.clip = swing;
+                source.Play();
             }
             if(melee!=true) 
             {
@@ -236,6 +262,8 @@ public class AnimationBehavior : MonoBehaviour
                     pRig.position = myRig.transform.position -myRig.transform.right *0.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                     p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
                     myControl.ammoCount -= 1;
+                    source.clip = bow;
+                    source.Play();
                 }
                 if (reset <= 0)
                 {
@@ -248,6 +276,8 @@ public class AnimationBehavior : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        source.clip = magicFire;
+                        source.Play();
                         myControl.Player_Min_MP -= 5;
                         reset = 5;
                     }
@@ -261,6 +291,8 @@ public class AnimationBehavior : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * 5.0f + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        source.clip = magicIce;
+                        source.Play();
                         reset = 5;
                         myControl.Player_Min_MP -= 5;
                     }

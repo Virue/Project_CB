@@ -8,10 +8,13 @@ public class ActorScript : MonoBehaviour
     Vector3 goal2;
     Vector3 player;
     Animator anim;
+    public float detectionRadius;
     public float reset;
     UnityEngine.AI.NavMeshAgent myNav = null;
     public Rigidbody myRig;
     public Rigidbody playerRig;
+    public AudioClip swing;
+    AudioSource Source;
     public int goal = 0;
     public string goalOne;
     public string goalTwo;
@@ -22,6 +25,7 @@ public class ActorScript : MonoBehaviour
         myNav = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        Source = GetComponent<AudioSource>();
         playerRig = GameObject.Find("Player").GetComponent<Rigidbody>();
         goal1 = GameObject.Find(goalOne).transform.position;
         goal2 = GameObject.Find(goalTwo).transform.position;
@@ -33,58 +37,67 @@ public class ActorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             goal1 = myRig.position;
             myNav.destination = goal1;
         }
-        else 
-        {
-            myRig.constraints = RigidbodyConstraints.None; 
-            myRig.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        }
-        reset -= Time.deltaTime;
-        anim.SetFloat("Speed", myRig.velocity.magnitude);
-        if (goal > 1)
-        {
-            goal = 0;
-            myNav.destination = goal1;
-        }
-        distancetoPlayer = new Vector3(myRig.position.x - playerRig.position.x, 0, myRig.position.z - playerRig.position.z);
-        
-        if (distancetoPlayer.magnitude <= 5f && !anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
-        {
-
-            player = GameObject.Find("Player").transform.position;
-            myNav.destination = player;
-            if (distancetoPlayer.magnitude <= 2.0f)
-                {
-                if (reset <= 0) 
-                {
-                    anim.SetTrigger("Attack");
-                    reset = 5;
-                }
-                           
-                }
-        }
         else
-        if (distancetoPlayer.magnitude > 5f)
         {
-            if (myNav.remainingDistance == 0 || myNav.remainingDistance < 0.5)
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                if (goal == 0)
+                myRig.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            else
+            {
+                myRig.constraints = RigidbodyConstraints.None;
+                myRig.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            }
+            reset -= Time.deltaTime;
+            anim.SetFloat("Speed", myRig.velocity.magnitude);
+            if (goal > 1)
+            {
+                goal = 0;
+                myNav.destination = goal1;
+            }
+            distancetoPlayer = new Vector3(myRig.position.x - playerRig.position.x, 0, myRig.position.z - playerRig.position.z);
+
+            if (distancetoPlayer.magnitude <= detectionRadius && !anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+            {
+
+                player = GameObject.Find("Player").transform.position;
+                myNav.destination = player;
+                if (myNav.remainingDistance <= 2.0f)
                 {
-                    goal++;
-                    myNav.destination = goal2;
-                    myNav.Resume();
+                    if (reset <= 0)
+                    {
+                        anim.SetTrigger("Attack");
+                        Source.clip = swing;
+                        Source.Play();
+                        reset = 2;
+                    }
+
                 }
-                else
-                if (goal == 1)
+            }
+            else
+            if (distancetoPlayer.magnitude > detectionRadius)
+            {
+                if (myNav.remainingDistance == 0 || myNav.remainingDistance < 0.5)
                 {
-                    goal=0;
-                    myNav.destination = goal1;
-                    myNav.Resume();
+                    if (goal == 0)
+                    {
+                        goal++;
+                        myNav.destination = goal2;
+                        myNav.Resume();
+                    }
+                    else
+                    if (goal == 1)
+                    {
+                        goal = 0;
+                        myNav.destination = goal1;
+                        myNav.Resume();
+                    }
                 }
             }
         }

@@ -12,6 +12,8 @@ public class TurretClass : MonoBehaviour
     public float reset;
     UnityEngine.AI.NavMeshAgent myNav = null;
     LookAtMe lookAt;
+    AudioSource source;
+    public AudioClip sound;
     public Rigidbody myRig;
     public Rigidbody playerRig;
     public float right=5.0f;
@@ -22,6 +24,7 @@ public class TurretClass : MonoBehaviour
         myNav = this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         lookAt = GetComponent<LookAtMe>();
         playerRig = GameObject.Find("Player").GetComponent<Rigidbody>();
         player = GameObject.Find("Player").transform.position;
@@ -56,12 +59,12 @@ public class TurretClass : MonoBehaviour
             {
                 this.transform.LookAt(focus.transform);
             }
-            if (distancetoPlayer.magnitude <= 10f)
+            if (distancetoPlayer.magnitude <= 30)
             {
 
                 player = GameObject.Find("Player").transform.position;
                 myNav.destination = player;
-                if (distancetoPlayer.magnitude <= 20.0f)
+                if (distancetoPlayer.magnitude <= 30)
                 {
                     if (reset <= 0)
                     {
@@ -70,6 +73,8 @@ public class TurretClass : MonoBehaviour
                         Rigidbody pRig = p.GetComponent<Rigidbody>();
                         pRig.position = myRig.transform.position + myRig.transform.right * right + myRig.transform.up * 1.2f + myRig.transform.forward * 1.5f;
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
+                        source.clip = sound;
+                        source.Play();
                         reset = 15;
                     }
 

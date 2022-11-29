@@ -9,6 +9,8 @@ public class KnightController : MonoBehaviour
     public Rigidbody myRig;
     public AnimationBehavior playerRig;
     public float Enemydamage;
+    AudioSource AudioSource;
+    public AudioClip hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class KnightController : MonoBehaviour
         anim = GetComponent<Animator>();
         playerRig = GameObject.Find("Player").GetComponent<AnimationBehavior>();
         myControl = new EnemyController();
+        AudioSource = GetComponent<AudioSource>();
         myControl.health = 80;
         myControl.maxHealth = 80;
         myControl.Enemy_Attack = 20;
@@ -31,19 +34,14 @@ public class KnightController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) || ((other.tag == "FireBall" || other.tag == "IceBall") && myControl.health > 0))
         {
+            AudioSource.clip = hit;
+            AudioSource.Play();
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
             myControl.health -= playerRig.damage;
-            Debug.Log("Knight: Damage Taken " + playerRig.damage + " from" + other.name);
-        }
-        if ((other.tag == "Fireball" || other.tag == "IceBall") && myControl.health > 0)
-        {
-            myControl.TakeDamage();
-            anim.SetTrigger("Damage");
-            myControl.health -= playerRig.damage;
-            Debug.Log("Knight: Damage Taken " + playerRig.damage + " from" + other.name);
+            Debug.Log("Knight: Damage Taken " + playerRig.damage + " from " + other.name);
         }
         if ((other.tag == "PlayerWeapon" || other.tag == "Fireball" || other.tag == "IceBall") && myControl.health <= 0)
         {

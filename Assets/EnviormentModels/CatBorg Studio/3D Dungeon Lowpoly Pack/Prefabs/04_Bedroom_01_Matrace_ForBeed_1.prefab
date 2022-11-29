@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 960551059958754580}
   - component: {fileID: 4250073741435364017}
   - component: {fileID: 2098603506233022075}
+  - component: {fileID: 6707495326091052525}
   m_Layer: 0
   m_Name: 04_Bedroom_01_Matrace_ForBeed_1
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6707495326091052525
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441142435037788078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3214686947105888006, guid: 1ef5953b6c063f242b91ff91bfb0bc44, type: 3}

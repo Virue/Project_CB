@@ -51,8 +51,15 @@ public class AnimationBehavior : MonoBehaviour
     public bool Bow = true;
     public bool fire = false;
     public bool ice = false;
+    public float basedamage=5;
     public float damage;
     public float health;
+
+    public float doubleStrike;
+    public float burn;
+    public float slow;
+
+    public bool boonApplied;
 
     public float enemyHealthBuff;
     public float enemyDamage;
@@ -88,8 +95,8 @@ public class AnimationBehavior : MonoBehaviour
         BowRender = GameObject.Find("BowRender");
         WandRender = GameObject.Find("WandRender");
         StaffRender = GameObject.Find("StaffRender");
-        
 
+        damage = (18 + basedamage) + ((18 + basedamage) * (myControl.Player_Vuln / 100));
         playercamera.GetComponentInChildren<Camera>();
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
@@ -125,6 +132,9 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_DS = stats.ReturnStat("Player_DS");
         myControl.Player_MS = stats.ReturnStat("Player_MS");
         myControl.Player_MPR = stats.ReturnStat("Player_MPR");
+        myControl.Player_ManaCost = stats.ReturnStat("Player_Mana_Cost");
+        myControl.Player_Burn = stats.ReturnStat("Player_Burn");
+        myControl.Player_Slow = stats.ReturnStat("Player_Slow");
     }
     public void SendStats()
     {
@@ -143,6 +153,8 @@ public class AnimationBehavior : MonoBehaviour
         stats.SetStat("Player_MS", myControl.Player_MS);
         stats.SetStat("Player_MPR", myControl.Player_MPR);
         stats.SetStat("Player_ManaCost", myControl.Player_ManaCost);
+        stats.SetStat("Player_Burn", myControl.Player_Burn);
+        stats.SetStat("Player_Slow", myControl.Player_Slow);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -158,6 +170,7 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void applyBoon()
     {
+        boonApplied = true;
         myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
         myControl.Player_Min_HP -= boonStats.Curse_Player_HP;
         myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
@@ -170,8 +183,8 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_LifeSteal -= boonStats.Curse_Player_LifeSteal;
         myControl.Player_ManaSap += boonStats.Blessing_Player_ManaSap;
         myControl.Player_ManaSap -= boonStats.Curse_Player_ManaSap;
-        myControl.Player_MS += boonStats.Blessing_Player_MoveSpeed;
-        myControl.Player_MS -= boonStats.Curse_Player_MoveSpeed;
+        myControl.Player_MS += myControl.Player_MS*(boonStats.Blessing_Player_MoveSpeed/100);
+        myControl.Player_MS -= myControl.Player_MS*(boonStats.Curse_Player_MoveSpeed/100);
         myControl.Player_Vuln += boonStats.Blessing_Player_Vulnerable;
         myControl.Player_Vuln -= boonStats.Curse_Player_Vulnerable;
         myControl.Player_DR += boonStats.Blessing_Player_Damage_Reduction;
@@ -180,6 +193,13 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Luck -= boonStats.Curse_Player_Luck;
         myControl.Player_ManaCost += boonStats.Blessing_Player_ManaCost;
         myControl.Player_ManaCost -= boonStats.Curse_Player_ManaCost;
+        basedamage += basedamage * (boonStats.Blessing_Player_Attack / 100);
+        basedamage -= basedamage * (boonStats.Curse_Player_Attack / 100);
+        myControl.Player_Burn += boonStats.Blessing_Player_Burn;
+        myControl.Player_Burn -= boonStats.Curse_Player_Burn;
+        myControl.Player_Slow += boonStats.Blessing_Player_Slow;
+        myControl.Player_Slow -= boonStats.Curse_Player_Slow;
+        boonApplied = false;
 
     }
     public void OnTriggerEnter(Collider other)
@@ -202,10 +222,10 @@ public class AnimationBehavior : MonoBehaviour
         if (other.gameObject.tag == "SkeletonWeapon" && damagereset<=0)
         {
             Debug.Log("Player Hit by Skeleton");
-            skeletonController = GameObject.Find("Skeleton").GetComponent<SkeletonController>();
+            skeletonController = GameObject.FindGameObjectWithTag("Skeleton").GetComponent<SkeletonController>();
                 source.clip = Hit;
                 source.Play();
-                myControl.Player_Min_HP -= skeletonController.Enemydamage;
+                myControl.Player_Min_HP -= skeletonController.Enemydamage-(skeletonController.Enemydamage*(myControl.Player_DR/100));
                 Debug.Log("Player took " + skeletonController.Enemydamage);
                 damagereset = 1;
             
@@ -214,12 +234,12 @@ public class AnimationBehavior : MonoBehaviour
         if (other.gameObject.tag == "FireBall" && damagereset <= 0)
         {
             Debug.Log("Player Hit by Mage");
-            mageController = GameObject.Find("Mage").GetComponent<MageController>();
+            mageController = GameObject.FindGameObjectWithTag("Mage").GetComponent<MageController>();
 
                 source.clip = Hit;
                 source.Play();
-                myControl.Player_Min_HP -= mageController.Enemydamage;
-                Debug.Log("Player took " + mageController.Enemydamage);
+                myControl.Player_Min_HP -= mageController.Enemydamage - (mageController.Enemydamage * (myControl.Player_DR / 100));
+            Debug.Log("Player took " + mageController.Enemydamage);
                 damagereset = 1;
 
 
@@ -227,22 +247,22 @@ public class AnimationBehavior : MonoBehaviour
         if (other.gameObject.tag == "Arrow" && damagereset <= 0)
         {
             Debug.Log("Player Hit by Archer");
-            archerController = GameObject.Find("Archer").GetComponent<ArcherController>();
+            archerController = GameObject.FindGameObjectWithTag("Archer").GetComponent<ArcherController>();
                 source.clip = Hit;
                 source.Play();
-                myControl.Player_Min_HP -= archerController.Enemydamage;
-                Debug.Log("Player took " + archerController.Enemydamage);
+                myControl.Player_Min_HP -= archerController.Enemydamage - (archerController.Enemydamage * (myControl.Player_DR / 100));
+            Debug.Log("Player took " + archerController.Enemydamage);
                 damagereset = 1;
 
         }
         if (other.gameObject.tag == "KnightWeapon" && damagereset <= 0)
         {
-            knightController = GameObject.Find("Knight").GetComponent<KnightController>();
+            knightController = GameObject.FindGameObjectWithTag("Knight").GetComponent<KnightController>();
             
                 Debug.Log("Player Hit by Knight");
                 source.clip = Hit;
                 source.Play();
-                myControl.Player_Min_HP -= knightController.Enemydamage;
+                myControl.Player_Min_HP -= knightController.Enemydamage - (knightController.Enemydamage * (myControl.Player_DR / 100));
                 Debug.Log("Player took " + knightController.Enemydamage);
                 damagereset = 1;
 
@@ -251,17 +271,31 @@ public class AnimationBehavior : MonoBehaviour
         if (other.gameObject.tag == "BossWeapon" && damagereset <= 0)
         {
                 Debug.Log("Player Hit by Boss");
-                bossController = GameObject.Find("Boss").GetComponent<BossController>();
+                bossController = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossController>();
                 source.clip = Hit;
                 source.Play();
-                myControl.Player_Min_HP -= bossController.Enemydamage;
-                Debug.Log("Player took " + bossController.Enemydamage);
+                myControl.Player_Min_HP -= bossController.Enemydamage - (bossController.Enemydamage * (myControl.Player_DR / 100));
+            Debug.Log("Player took " + bossController.Enemydamage);
                 damagereset = 1;
 
 
         }
 
 
+    }
+    public void Steal()
+    {
+        myControl.Player_Min_HP += myControl.Player_LifeSteal;
+        myControl.Player_Min_MP += myControl.Player_ManaSap;
+    }
+    public void DeathSteal()
+    {
+        myControl.Player_Min_HP += myControl.Player_LifeSteal;
+        myControl.Player_Min_MP += myControl.Player_ManaSap;
+        if (myControl.Player_LifeSteal == 0 && myControl.Player_Min_HP < myControl.Player_Max_HP)
+        {
+            myControl.Player_Min_HP += 5;
+        }
     }
     private void die()
     {
@@ -288,6 +322,9 @@ public class AnimationBehavior : MonoBehaviour
         SendStats();
         myControl.ManaRegen();
         HandleCameraLook();
+        burn = myControl.Player_Burn;
+        slow = myControl.Player_Slow;
+        doubleStrike = myControl.Player_DS;
         if (stats.acceptBoon == true)
         {
             applyBoon();
@@ -403,7 +440,7 @@ public class AnimationBehavior : MonoBehaviour
                 melee = false;
                 magic = true;
                 Bow = false;
-                damage = 18;
+                damage = (18 + basedamage)+((18 + basedamage) * (myControl.Player_Vuln / 100));
             }
             else
             if (weapon1==false)
@@ -420,7 +457,7 @@ public class AnimationBehavior : MonoBehaviour
                 melee = true;
                 magic = false;
                 Bow = false;
-                damage = 15;
+                damage = (15 + basedamage)+((15 + basedamage) * (myControl.Player_Vuln / 100));
             }
             
 

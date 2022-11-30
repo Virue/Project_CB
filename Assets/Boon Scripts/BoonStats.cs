@@ -203,7 +203,7 @@ public class BoonStats : MonoBehaviour
                 else
                 {
                     Blessing_Player_Slow += Random.Range(1, 20);//percent
-                    blessingText = "Player Slows Enemies on hit: " + Blessing_Player_Slow+"%";
+                    blessingText = "Player Slows Enemies on hit: " + Blessing_Player_Slow+" %";
                 }
                 return blessingText;
             }

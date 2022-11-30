@@ -11,6 +11,7 @@ public class EnemyController : Stats
     public float vulnerable;
     public float burn=0;
     public float slow=0;
+    public float doublestrike;
     // Start is called before the first frame update
     void Start()
     {

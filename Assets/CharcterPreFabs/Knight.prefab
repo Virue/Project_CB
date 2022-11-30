@@ -4536,7 +4536,7 @@ GameObject:
   - component: {fileID: 2643682851676245142}
   m_Layer: 0
   m_Name: Knight
-  m_TagString: Untagged
+  m_TagString: Knight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4741,6 +4741,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 6006146077295408362}
   myRig: {fileID: 0}
   playerRig: {fileID: 0}
+  playerScript: {fileID: 0}
   swing: {fileID: 8300000, guid: c402eb97a9eff894886f24380c0b8c01, type: 3}
   goal: 0
   goalOne: 

@@ -14,6 +14,11 @@ TagManager:
   - SkeletonWeapon
   - KnightWeapon
   - BossWeapon
+  - Skeleton
+  - Archer
+  - Mage
+  - Knight
+  - Boss
   layers:
   - Default
   - TransparentFX

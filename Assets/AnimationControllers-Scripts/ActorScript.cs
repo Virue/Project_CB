@@ -14,6 +14,7 @@ public class ActorScript : MonoBehaviour
     UnityEngine.AI.NavMeshAgent myNav = null;
     public Rigidbody myRig;
     public Rigidbody playerRig;
+    public AnimationBehavior playerScript;
     public AudioClip swing;
     AudioSource Source;
     public int goal = 0;
@@ -29,6 +30,7 @@ public class ActorScript : MonoBehaviour
         Source = GetComponent<AudioSource>();
         
         playerRig = GameObject.Find("Player").GetComponent<Rigidbody>();
+        playerScript = GameObject.Find("Player").GetComponent<AnimationBehavior>();
         goal1 = GameObject.Find(goalOne).transform.position;
         goal2 = GameObject.Find(goalTwo).transform.position;
         player = GameObject.Find("Player").transform.position;
@@ -40,9 +42,17 @@ public class ActorScript : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         
     }
+    void BoonApplied()
+    {
+        myNav.speed -= myNav.speed*playerScript.slow/10;
+    }
     // Update is called once per frame
     void Update()
     {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
+        {
+            BoonApplied();
+        }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;

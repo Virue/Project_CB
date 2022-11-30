@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class SkeletonController : MonoBehaviour
 {
     EnemyController myControl;
@@ -40,8 +40,20 @@ public class SkeletonController : MonoBehaviour
             AudioSource.Play();
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
-            myControl.health -= playerRig.damage;
-            Debug.Log("Skeleton: Damage Taken " + playerRig.damage + " from " + other.name);
+
+            myControl.doublestrike = Random.Range(0, 100);
+            if (myControl.doublestrike < playerRig.doubleStrike)
+            {
+                myControl.health -= 2*playerRig.damage+playerRig.burn;
+            }
+            else 
+            { 
+                myControl.health -= playerRig.damage+playerRig.burn;
+            }
+            
+
+            Debug.Log("Enemy: Damage Taken " + playerRig.damage + " from " + other.name);
+            playerRig.Steal();
             if (myControl.health <= 0)
             {
                 anim.SetBool("Death",true);
@@ -50,16 +62,31 @@ public class SkeletonController : MonoBehaviour
         
         if ((other.tag == "PlayerWeapon" || other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health <= 0)
         {
-            Debug.Log("Skeleton: Death Damage Taken " + playerRig.damage + " from " + other.name);
+            Debug.Log("Enemy: Death Damage Taken " + playerRig.damage + " from " + other.name);
             myRig.constraints = RigidbodyConstraints.FreezeAll;
+            playerRig.DeathSteal();
             anim.SetBool("Death", true);
+            StartCoroutine(BodyDisposal());
         }
 
 
     }
+    public IEnumerator BodyDisposal()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
+    }
+    void BoonApplied()
+    {
+        myControl.Enemy_Attack += myControl.Enemy_Attack*(playerRig.enemyDamage/100);
+        myControl.health += myControl.health*(playerRig.enemyHealthBuff/100);
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerRig.boonApplied)
+        {
+            BoonApplied();
+        }
     }
 }

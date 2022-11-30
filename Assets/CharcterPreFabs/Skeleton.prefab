@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: -6901591068853308515}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,6 +478,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 3424881968897770187}
   myRig: {fileID: 0}
   playerRig: {fileID: 0}
+  playerScript: {fileID: 0}
   swing: {fileID: 0}
   goal: 0
   goalOne: Goal1

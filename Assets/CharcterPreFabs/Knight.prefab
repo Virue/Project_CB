@@ -4738,6 +4738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadius: 0
   reset: 0
+  weaponCollider: {fileID: 6006146077295408362}
   myRig: {fileID: 0}
   playerRig: {fileID: 0}
   swing: {fileID: 8300000, guid: c402eb97a9eff894886f24380c0b8c01, type: 3}

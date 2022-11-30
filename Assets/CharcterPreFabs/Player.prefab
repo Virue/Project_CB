@@ -1306,6 +1306,7 @@ GameObject:
   - component: {fileID: 188621776882295727}
   - component: {fileID: 188621776882295713}
   - component: {fileID: 4746535695209506132}
+  - component: {fileID: 6192876351075288895}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1394,6 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  boonStats: {fileID: 0}
   myRig: {fileID: 188621776882295726}
   SwordRender: {fileID: 8944970000431957404}
   AxeRender: {fileID: 4417476721819134715}
@@ -1405,6 +1407,9 @@ MonoBehaviour:
   myPrefabice: {fileID: 5372575067300646232, guid: 756b7ff2f2896404e879a025f8912fb6, type: 3}
   myPrefabArrow: {fileID: 8852519277381726090, guid: e3787be58bd99af49b6d984cca640c3b, type: 3}
   pressEUI: {fileID: 0}
+  pressTUI: {fileID: 0}
+  panel: {fileID: 0}
+  MainCamera: {fileID: 0}
   source: {fileID: 4746535695209506132}
   bow: {fileID: 8300000, guid: 81fd42fece24b0743bf65b51f4b71b4b, type: 3}
   swing: {fileID: 8300000, guid: c402eb97a9eff894886f24380c0b8c01, type: 3}
@@ -1422,6 +1427,8 @@ MonoBehaviour:
   ice: 0
   damage: 0
   health: 0
+  enemyHealthBuff: 0
+  enemyDamage: 0
   lookspeedX: 2
   lookspeedY: 2
   upperLookLimit: 20
@@ -1523,6 +1530,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &6192876351075288895
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883473294073877508}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1894564943600668602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6488,7 +6511,7 @@ GameObject:
   - component: {fileID: 188621777968800583}
   m_Layer: 0
   m_Name: SwordRender
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

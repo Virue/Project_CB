@@ -10,6 +10,7 @@ public class ActorScript : MonoBehaviour
     Animator anim;
     public float detectionRadius;
     public float reset;
+    public Collider weaponCollider;
     UnityEngine.AI.NavMeshAgent myNav = null;
     public Rigidbody myRig;
     public Rigidbody playerRig;
@@ -26,6 +27,7 @@ public class ActorScript : MonoBehaviour
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         Source = GetComponent<AudioSource>();
+        
         playerRig = GameObject.Find("Player").GetComponent<Rigidbody>();
         goal1 = GameObject.Find(goalOne).transform.position;
         goal2 = GameObject.Find(goalTwo).transform.position;
@@ -33,7 +35,11 @@ public class ActorScript : MonoBehaviour
         myNav.destination = goal1;
         myNav.Resume();
     }
-
+    public IEnumerator DeleteBody()
+    {
+        yield return new WaitForSeconds(5.0f);
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +48,9 @@ public class ActorScript : MonoBehaviour
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             goal1 = myRig.position;
             myNav.destination = goal1;
+            weaponCollider.enabled=!weaponCollider.enabled;
+            StartCoroutine(DeleteBody());
+            
         }
         else
         {
@@ -79,6 +88,7 @@ public class ActorScript : MonoBehaviour
                     }
 
                 }
+                
             }
             else
             if (distancetoPlayer.magnitude > detectionRadius)

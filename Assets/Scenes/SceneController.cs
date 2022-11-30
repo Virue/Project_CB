@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class SceneController : MonoBehaviour
 {
     PanelHandler panelHandler;
@@ -11,10 +11,16 @@ public class SceneController : MonoBehaviour
     AnimationBehavior animationBehavior;
     PlayerStats playerStats;
 
+    public Timer_Score timer;
+
+    public TextMeshProUGUI score;
+
+
     public bool beenUsed = false;
+    public bool health = true;
     public GameObject playerHUD;
     public GameObject scoreScreen;
-    //public GameObject pressEUI;
+    public GameObject pressEUI;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +28,10 @@ public class SceneController : MonoBehaviour
        // playerStats= new PlayerStats();
         playerHUD = transform.Find("PlayerHUD").gameObject as GameObject;
         scoreScreen = transform.Find("End Screen").gameObject as GameObject;
-       // pressEUI = transform.Find("PressE").gameObject as GameObject;
+        pressEUI = transform.Find("Blessing_CurseCanvas").gameObject as GameObject;
         playerHUD.SetActive(false);
         scoreScreen.SetActive(false);
-       // pressEUI.SetActive(false);
+        pressEUI.SetActive(false);
         Debug.Log("start");
         Debug.Log("The scene name for the first scene is " + SceneManager.GetSceneAt(0).name);
         SceneManager.sceneLoaded += SceneChanger;
@@ -35,6 +41,10 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         
+    }
+    public void PlayerDied() 
+    {
+        health = false;
     }
     public void Awake()
     {
@@ -80,8 +90,18 @@ public class SceneController : MonoBehaviour
     }
     public IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(60.0f);
+        yield return new WaitWhile(()=>health);
         endScene();
+    }
+    public void BoonUIActivate()
+    {
+        pressEUI.SetActive(true);
+    }
+    public void BoonUIDeActivate()
+    {
+        pressEUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void endScene()
     {
@@ -89,7 +109,21 @@ public class SceneController : MonoBehaviour
         Cursor.lockState= CursorLockMode.None;
         Cursor.visible = true;
         playerHUD.SetActive(false);
+        pressEUI.SetActive(false);
         scoreScreen.SetActive(true);
+        score.text = "Score: " + timer.score+"\n";
+
+        score.text += "Time: ";
+        float t = Time.timeSinceLevelLoad; //scene loaded
+
+        int seconds = (int)(t % 60);// return remainder of seconds/60 as an it
+        t /= 60; //minutes
+        int minutes = (int)(t % 60);//remainder of minutes
+        t /= 60;//hours
+        int hours = (int)(t % 60);//remainder of hours
+        score.text += string.Format("{0}:{1}:{2}",
+           hours.ToString("00"), minutes.ToString("00"), seconds.ToString("00"));
+        
     }
     public void returnToMainMenu()
     {

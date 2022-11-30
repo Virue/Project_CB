@@ -14,7 +14,8 @@ public class AnimationBehavior : MonoBehaviour
     KnightController knightController;
     MageController mageController;
     BossController bossController;
-    BoonStats boonStats;
+    public BoonStats boonStats;
+    PlayerStats stats;
 
     public Rigidbody myRig;
     public GameObject SwordRender;
@@ -38,7 +39,7 @@ public class AnimationBehavior : MonoBehaviour
     public AudioClip magicFire;
     public AudioClip magicIce;
     public AudioClip Hit;
-
+    bool weapon1;
     public float speed = 5.0f;
     public float maxspeed = 10.0f;
     public float reset=0.0f;
@@ -52,6 +53,9 @@ public class AnimationBehavior : MonoBehaviour
     public bool ice = false;
     public float damage;
     public float health;
+
+    public float enemyHealthBuff;
+    public float enemyDamage;
 
     [Header("Look Parameters")]
     [SerializeField, Range(1, 10)] private float lookspeedX = 2.0f;
@@ -68,12 +72,15 @@ public class AnimationBehavior : MonoBehaviour
     {
         myRig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        sceneController= GetComponent<SceneController>();
+        sceneController= GameObject.Find("SceneController").GetComponent<SceneController>();
+        stats = GameObject.Find("HUD").GetComponent<PlayerStats>();
         myControl = new PlayerController();
         boonStats = gameObject.AddComponent<BoonStats>();
+        boonStats.gameObject.GetComponent<BoonStats>();
+        SetStats();
         source = GetComponent<AudioSource>();
         damage = 15;
-        pressEUI = GameObject.Find("Blessing_CurseCanvas");
+        //pressEUI = GameObject.Find("Blessing_CurseCanvas");
         health = myControl.Player_Max_HP;
         SwordRender = GameObject.Find("SwordRender");
         AxeRender = GameObject.Find("AxeRender");
@@ -95,12 +102,47 @@ public class AnimationBehavior : MonoBehaviour
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
 
-        pressEUI.SetActive(false);
+        //pressEUI.SetActive(false);
 
 
 
 
 
+    }
+    public void SetStats()
+    { 
+        myControl.Player_Min_MP = stats.ReturnStat("Player_Min_MP"); 
+        myControl.Player_Max_MP = stats.ReturnStat("Player_Max_MP"); 
+        myControl.Player_Min_HP = stats.ReturnStat("Player_Min_HP"); 
+        myControl.Player_Max_HP = stats.ReturnStat("Player_Max_HP");
+        myControl.ammoCount = stats.ReturnStat("ammoCount"); 
+        myControl.ammoCountMax = stats.ReturnStat("ammoCountMax"); 
+        myControl.Player_DR = stats.ReturnStat("Player_DR"); 
+        myControl.Player_Vuln = stats.ReturnStat("Player_Vuln"); 
+        myControl.Player_Luck = stats.ReturnStat("Player_Luck"); 
+        myControl.Player_LifeSteal = stats.ReturnStat("Player_LifeSteal"); 
+        myControl.Player_ManaSap = stats.ReturnStat("Player_ManaSap"); 
+        myControl.Player_DS = stats.ReturnStat("Player_DS");
+        myControl.Player_MS = stats.ReturnStat("Player_MS");
+        myControl.Player_MPR = stats.ReturnStat("Player_MPR");
+    }
+    public void SendStats()
+    {
+        stats.SetStat("Player_Min_MP",myControl.Player_Min_MP);
+        stats.SetStat("Player_Maxn_MP", myControl.Player_Max_MP); 
+        stats.SetStat("Player_Min_HP", myControl.Player_Min_HP);
+        stats.SetStat("Player_Max_HP", myControl.Player_Max_HP);
+        stats.SetStat("ammoCount", myControl.ammoCount);
+        stats.SetStat("ammoCountMax", myControl.ammoCountMax);
+        stats.SetStat("Player_DR", myControl.Player_DR);
+        stats.SetStat("Player_Vuln", myControl.Player_Vuln);
+        stats.SetStat("Player_Luck", myControl.Player_Luck);
+        stats.SetStat("Player_LifeSteal", myControl.Player_LifeSteal);
+        stats.SetStat("Player_ManaSap", myControl.Player_ManaSap);
+        stats.SetStat("Player_DS", myControl.Player_DS);
+        stats.SetStat("Player_MS", myControl.Player_MS);
+        stats.SetStat("Player_MPR", myControl.Player_MPR);
+        stats.SetStat("Player_ManaCost", myControl.Player_ManaCost);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -114,34 +156,59 @@ public class AnimationBehavior : MonoBehaviour
         }
         
     }
+    public void applyBoon()
+    {
+        myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
+        myControl.Player_Min_HP -= boonStats.Curse_Player_HP;
+        myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
+        myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP;
+        myControl.Player_Min_MP += boonStats.Blessing_Player_MP;
+        myControl.Player_Min_MP -= boonStats.Curse_Player_MP;
+        myControl.Player_Max_MP += boonStats.Blessing_Player_Max_MP;
+        myControl.Player_Max_MP -= boonStats.Curse_Player_Max_MP;
+        myControl.Player_LifeSteal += boonStats.Blessing_Player_LifeSteal;
+        myControl.Player_LifeSteal -= boonStats.Curse_Player_LifeSteal;
+        myControl.Player_ManaSap += boonStats.Blessing_Player_ManaSap;
+        myControl.Player_ManaSap -= boonStats.Curse_Player_ManaSap;
+        myControl.Player_MS += boonStats.Blessing_Player_MoveSpeed;
+        myControl.Player_MS -= boonStats.Curse_Player_MoveSpeed;
+        myControl.Player_Vuln += boonStats.Blessing_Player_Vulnerable;
+        myControl.Player_Vuln -= boonStats.Curse_Player_Vulnerable;
+        myControl.Player_DR += boonStats.Blessing_Player_Damage_Reduction;
+        myControl.Player_DR -= boonStats.Curse_Player_Damage_Reduction;
+        myControl.Player_Luck += boonStats.Blessing_Player_Luck;
+        myControl.Player_Luck -= boonStats.Curse_Player_Luck;
+        myControl.Player_ManaCost += boonStats.Blessing_Player_ManaCost;
+        myControl.Player_ManaCost -= boonStats.Curse_Player_ManaCost;
+
+    }
     public void OnTriggerEnter(Collider other)
     {
         
         if (other.gameObject.tag == "Boon")
         {
             Debug.Log("Player Collided with Boon");
-            pressEUI.SetActive(true);
+            //pressEUI.SetActive(true);
+            sceneController.BoonUIActivate();
             boonStats.getBlessing();
             boonStats.getCurse();
             //MainCamera.GetComponentInChildren<Camera>();
-           // Cursor.lockState = CursorLockMode.Confined;
-           // Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Boon");
-            
+            Object.Destroy(other.gameObject);
             Debug.Log("UI");
         }
         if (other.gameObject.tag == "SkeletonWeapon" && damagereset<=0)
         {
             Debug.Log("Player Hit by Skeleton");
             skeletonController = GameObject.Find("Skeleton").GetComponent<SkeletonController>();
-            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
                 source.clip = Hit;
                 source.Play();
                 myControl.Player_Min_HP -= skeletonController.Enemydamage;
-                Debug.Log("Player took "+skeletonController.Enemydamage);
+                Debug.Log("Player took " + skeletonController.Enemydamage);
                 damagereset = 1;
-            }
+            
             
         }
         if (other.gameObject.tag == "FireBall" && damagereset <= 0)
@@ -202,6 +269,7 @@ public class AnimationBehavior : MonoBehaviour
         {
             anim.SetBool("Death", true);
             myControl.Player_Min_HP = 0;
+            sceneController.PlayerDied();
             Debug.Log("Player Died");
         }
     }
@@ -217,8 +285,14 @@ public class AnimationBehavior : MonoBehaviour
     void Update()
     {
         die();
+        SendStats();
         myControl.ManaRegen();
         HandleCameraLook();
+        if (stats.acceptBoon == true)
+        {
+            applyBoon();
+            stats.acceptBoon = false;
+        }
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -301,7 +375,7 @@ public class AnimationBehavior : MonoBehaviour
                         source.clip = magicIce;
                         source.Play();
                         reset = 5;
-                        myControl.Player_Min_MP -= 5;
+                        myControl.Player_Min_MP -= 10;
                     }
                 }
                 else 
@@ -315,18 +389,40 @@ public class AnimationBehavior : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            SwordRender.SetActive(false);
-            AxeRender.SetActive(false);
-            MaceRender.SetActive(false);
-            BowRender.SetActive(false);
-            WandRender.SetActive(false);
-            StaffRender.SetActive(true);
-            ice = true;
-            fire = false;
-            melee = false;
-            magic = true;
-            Bow = false;
-            damage = 150;
+            if (weapon1==true)
+            {
+                weapon1 = false;
+                SwordRender.SetActive(false);
+                AxeRender.SetActive(false);
+                MaceRender.SetActive(false);
+                BowRender.SetActive(false);
+                WandRender.SetActive(false);
+                StaffRender.SetActive(true);
+                ice = true;
+                fire = false;
+                melee = false;
+                magic = true;
+                Bow = false;
+                damage = 18;
+            }
+            else
+            if (weapon1==false)
+            {
+                weapon1 = true;
+                SwordRender.SetActive(true);
+                AxeRender.SetActive(false);
+                MaceRender.SetActive(false);
+                BowRender.SetActive(false);
+                WandRender.SetActive(false);
+                StaffRender.SetActive(false);
+                ice = true;
+                fire = false;
+                melee = true;
+                magic = false;
+                Bow = false;
+                damage = 15;
+            }
+            
 
         }
         if (Input.GetAxisRaw("Jump") > 0 && canJump == true)
@@ -347,19 +443,19 @@ public class AnimationBehavior : MonoBehaviour
        
             if (v > 0.15)
             {
-                myRig.velocity = transform.forward * speed + new Vector3(0, myRig.velocity.y, 0);
+                myRig.velocity = transform.forward * myControl.Player_MS + new Vector3(0, myRig.velocity.y, 0);
             }
             if (v < -0.15)
             {
-                myRig.velocity = -transform.forward * speed + new Vector3(0, myRig.velocity.y, 0);
+                myRig.velocity = -transform.forward * myControl.Player_MS + new Vector3(0, myRig.velocity.y, 0);
             }
             if (h > 0.15)
             {
-                myRig.velocity = transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
+                myRig.velocity = transform.right * myControl.Player_MS + new Vector3(0, myRig.velocity.y, 0);
             }
             if (h < -0.15)
             {
-                myRig.velocity = -transform.right *speed+ new Vector3(0, myRig.velocity.y, 0);
+                myRig.velocity = -transform.right * myControl.Player_MS + new Vector3(0, myRig.velocity.y, 0);
             }
       
     }

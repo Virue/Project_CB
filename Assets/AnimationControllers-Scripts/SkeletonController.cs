@@ -21,7 +21,7 @@ public class SkeletonController : MonoBehaviour
         myControl = new EnemyController();
         myControl.health = 40;
         myControl.maxHealth = 40;
-        myControl.Enemy_Attack = 1;
+        myControl.Enemy_Attack = 10;
         Enemydamage = myControl.Enemy_Attack;
         myControl.damageReduction = 0.0f;
         myControl.vulnerable = 0.05f;

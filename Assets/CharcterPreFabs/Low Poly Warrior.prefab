@@ -4150,9 +4150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRadius: 0
   reset: 0
+  weaponCollider: {fileID: 6366708929396282848}
   myRig: {fileID: 0}
   playerRig: {fileID: 0}
-  swing: {fileID: 0}
+  swing: {fileID: 8300000, guid: c402eb97a9eff894886f24380c0b8c01, type: 3}
   goal: 0
   goalOne: Goal1
   goalTwo: Goal2

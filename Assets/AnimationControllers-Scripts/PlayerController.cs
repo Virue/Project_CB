@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : Stats
 {
     public float Player_Min_MP=40;
-    public float Player_Max_MP=4;
+    public float Player_Max_MP=40;
     public float ammoCount=0;
     public float ammoCountMax=0;
     public float Player_DR=0;
@@ -18,6 +18,7 @@ public class PlayerController : Stats
     public float Player_Min_HP=50;
     public float Player_Max_HP=50;
     public float Player_MS=5.0f;
+    public float Player_ManaCost=0;
     // Start is called before the first frame update+
     void Start()
     {
@@ -33,6 +34,8 @@ public class PlayerController : Stats
         Player_LifeSteal = 0;
         Player_ManaSap = 0;
         Player_DS = 0;
+        Player_MS = 5.0f;
+        Player_MPR = 0;
     }
     public void ManaRegen()
     {

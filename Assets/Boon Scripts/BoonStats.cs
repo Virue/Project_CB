@@ -423,8 +423,13 @@ public class BoonStats : MonoBehaviour
                 }
                 return curseText;
             }
+            
         }
-        return curseText;  
+        else
+        {
+            curseText = "The Goddess shines down on you";
+            return curseText;
+        }
     }
 
 }

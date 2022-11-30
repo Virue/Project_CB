@@ -34,11 +34,21 @@ public class WeaponStats : MonoBehaviour
     public float Weapon_Bleed;
 
     public float Weapon_Rank;
+    public float weaponType;
     public float Weapon_Stat_Group;
     public float Weapon_RandomPicker;
     public float Weapon_StatGroup1;
     public float Weapon_StatGroup2;
     public float Weapon_StatGroup3;
+    public String statGroup1Str;
+    public String statGroup2Str;
+    public String statGroup3Str;
+    public String statGroup4Str;
+    public String statGroup5Str;
+    public String statGroup6Str;
+    public String statGroup7Str;
+    public String WeaponStatGroup1;
+    public String WeaponStatGroup2;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +71,7 @@ public class WeaponStats : MonoBehaviour
         if (Weapon_Rank == 1)
         {
             Weapon_Attack += Random.Range(3, 6);
+           
         }
         if (Weapon_Rank == 2)
         {
@@ -70,6 +81,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Attack += Random.Range(19, 24);
         }
+        statGroup1Str = "Atk up: " + Weapon_Attack;
     }
     public void GetWeaponLuck()
     {
@@ -85,6 +97,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Luck += Random.Range(5, 7);
         }
+        statGroup1Str = "Luck up: " + Weapon_Luck;
     }
     public void GetWeaponMoveSpeed()
     {
@@ -100,6 +113,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_MoveSpeed += Random.Range(7, 10);
         }
+        statGroup1Str = "MS up: " + Weapon_MoveSpeed;
     }
     public void GetWeaponMHP()
     {
@@ -115,6 +129,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Max_HP += Random.Range(45, 50);
         }
+        statGroup2Str = "Max HP up: " + Weapon_Max_HP;
     }
     public void GetWeaponMMP()
     {
@@ -130,6 +145,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Max_MP += Random.Range(50, 60);
         }
+        statGroup2Str = "Max MP up: " + Weapon_Max_MP;
     }
     public void GetWeaponAmmo()
     {
@@ -145,6 +161,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Ammo += 15;
         }
+        statGroup6Str = "Ammo up: " + Weapon_Ammo;
     }
     public void GetWeaponSlow()
     {
@@ -160,6 +177,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Slow += 7;
         }
+        statGroup6Str = "Slow up: " + Weapon_Slow;
+        statGroup7Str = "Slow up: " + Weapon_Slow;
     }
     public void GetWeaponBurn()
     {
@@ -175,6 +194,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_Burn += 8;
         }
+        statGroup6Str = "Burn up: " + Weapon_Burn;
+        statGroup7Str = "Slow up: " + Weapon_Burn;
     }
     public void GetWeaponManaCost()
     {
@@ -190,6 +211,7 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_ManaCost -= 3;
         }
+        statGroup7Str = "MC down: " + Weapon_ManaCost;
     }
     public void GetWeaponOnHitLifeSteal()
     {
@@ -205,6 +227,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_LifeSteal += 1;// 1 % of MHP
         }
+        statGroup3Str = "LS up: " + Weapon_LifeSteal;
+        statGroup5Str = "LS up: " + Weapon_LifeSteal;
     }
     public void GetWeaponOnHitManaSap()
     {
@@ -220,6 +244,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_ManaSap += 8;
         }
+        statGroup3Str = "ManaSap up: " + Weapon_ManaSap;
+        statGroup5Str = "ManaSap up: " + Weapon_ManaSap;
     }
     public void GetWeaponOnHitDoubleStrike()
     {
@@ -235,6 +261,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_DoubleStrike += Random.Range(70, 90);
         }
+        statGroup3Str = "DS up: " + Weapon_DoubleStrike;
+        statGroup5Str = "DS up: " + Weapon_DoubleStrike;
     }
     public void GetWeaponOnKillMHP()
     {
@@ -250,6 +278,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_OnKill_Max_HP += 10;
         }
+        statGroup4Str = "Onkill Max HP up: " + Weapon_OnKill_Max_HP;
+        statGroup5Str = "Onkill Max HP up: " + Weapon_OnKill_Max_HP;
     }
     public void GetWeaponOnKillMMP()
     {
@@ -265,6 +295,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_OnKill_Max_MP += 5;
         }
+        statGroup4Str = "Onkill Max MP up: " + Weapon_OnKill_Max_MP;
+        statGroup5Str = "Onkill Max MP up: " + Weapon_OnKill_Max_MP;
     }
     public void GetWeaponOnKillHP()
     {
@@ -280,6 +312,8 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_OnKill_Min_HP += 28;
         }
+        statGroup4Str = "Heal on Kill: " + Weapon_OnKill_Min_HP;
+        statGroup5Str = "Heal on Kill: " + Weapon_OnKill_Min_HP;
     }
     public void GetWeaponOnKillMP()
     {
@@ -295,21 +329,25 @@ public class WeaponStats : MonoBehaviour
         {
             Weapon_OnKill_Min_MP += 14;
         }
+        statGroup4Str = "Regen on Kill: " + Weapon_OnKill_Min_MP;
+        statGroup5Str = "Regen on Kill: " + Weapon_OnKill_Min_MP;
     }
     public void GetWeaponOnKillMoveSpeed()
     {
         if (Weapon_Rank == 1)
         {
-            Weapon_OnKill_MoveSpeed += 0.25f;
+            Weapon_OnKill_MoveSpeed += 25;
         }
         if (Weapon_Rank == 2)
         {
-            Weapon_OnKill_MoveSpeed += 0.5f;
+            Weapon_OnKill_MoveSpeed += 50;
         }
         if (Weapon_Rank == 3)
         {
-            Weapon_OnKill_MoveSpeed += 1.50f;
+            Weapon_OnKill_MoveSpeed += 150;
         }
+        statGroup4Str = "MS on Kill: " + Weapon_OnKill_Min_MP+"%";
+        statGroup5Str = "MS on Kill: " + Weapon_OnKill_Min_MP+"%";
     }
 
     //stat grouping
@@ -461,11 +499,14 @@ public class WeaponStats : MonoBehaviour
         if (Weapon_RandomPicker > 50)
         {
             StatGroup1();
+            WeaponStatGroup1 += statGroup1Str;
         }
         else
         {
             StatGroup2();
+            WeaponStatGroup1 +=statGroup2Str;
         }
+
     }
     public void WeaponStat2()
     {
@@ -479,10 +520,12 @@ public class WeaponStats : MonoBehaviour
         if (Weapon_RandomPicker > 50)
         {
             StatGroup3();
+            WeaponStatGroup2 += statGroup3Str;
         }
         else
         {
             StatGroup4();
+            WeaponStatGroup2 += statGroup4Str;
         }
     }
     public void MeleeStat()
@@ -549,8 +592,8 @@ public class WeaponStats : MonoBehaviour
    
     public void Melee()
     {
-        if (gameObject.tag=="Rapier")
-        {
+       // if (gameObject.tag=="Rapier")
+       // {
             if (Weapon_Rank == 1)
             {
                 Weapon_Attack = Random.Range(5,8);
@@ -566,7 +609,7 @@ public class WeaponStats : MonoBehaviour
                 Weapon_Attack = Random.Range(17, 23);
                 Weapon_DamageReduction = 0.09f;
             }
-        }
+      //  }
         if (gameObject.tag == "Sword")
         {
             if (Weapon_Rank == 1)
@@ -687,8 +730,8 @@ public class WeaponStats : MonoBehaviour
     public void Range()
     {
         
-        if (gameObject.tag == "fire Bow")
-        {
+      //  if (gameObject.tag == "fire Bow")
+      //  {
             if (Weapon_Rank == 1)
             {
                 Weapon_Attack = 3;
@@ -708,7 +751,7 @@ public class WeaponStats : MonoBehaviour
                 Weapon_Burn = Random.Range(25, 30);
             }
             BowStat();
-        }
+       // }
         if (gameObject.tag == "Ice Bow")
         {
             if (Weapon_Rank == 1)

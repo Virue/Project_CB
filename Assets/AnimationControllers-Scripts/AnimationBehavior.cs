@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class AnimationBehavior : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class AnimationBehavior : MonoBehaviour
     public GameObject myPrefabArrow;
 
     public GameObject pressEUI;
+    public GameObject pressTUI;
+    public GameObject panel;
+    public Camera MainCamera;
 
     public AudioSource source;
     public AudioClip bow;
@@ -96,6 +100,7 @@ public class AnimationBehavior : MonoBehaviour
 
 
 
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -117,10 +122,12 @@ public class AnimationBehavior : MonoBehaviour
             Debug.Log("Player Collided with Boon");
             pressEUI.SetActive(true);
             boonStats.getBlessing();
+            boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+           // Cursor.lockState = CursorLockMode.Confined;
+           // Cursor.visible = true;
             Debug.Log("Boon");
-            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-            UnityEngine.Cursor.visible = true;
-            pressEUI.SetActive(true);
+            
             Debug.Log("UI");
         }
         if (other.gameObject.tag == "SkeletonWeapon" && damagereset<=0)

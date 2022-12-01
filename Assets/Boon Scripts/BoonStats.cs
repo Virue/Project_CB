@@ -154,12 +154,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Blessing_Player_Damage_Reduction += Random.Range(1, 80); //percent
-                    blessingText = "Player takes less damage + " + Blessing_Player_Damage_Reduction;
+                    blessingText = "Player takes " + Blessing_Player_Damage_Reduction +" % less damage";
                 }
                 else
                 {
                     Blessing_Player_Vulnerable += Random.Range(1, 75);//percent
-                    blessingText = "Player deals more damage " + Blessing_Player_Vulnerable;
+                    blessingText = "Player deals " + Blessing_Player_Vulnerable +" % more damage";
                 }
                 return blessingText;
             }
@@ -203,7 +203,7 @@ public class BoonStats : MonoBehaviour
                 else
                 {
                     Blessing_Player_DoubleStrike += Random.Range(15, 60); // percent
-                    blessingText = "Player chance to hit twice" + Blessing_Player_DoubleStrike + " %";
+                    blessingText = "Player chance to hit twice " + Blessing_Player_DoubleStrike + " %";
                 }
                 return blessingText;
             }
@@ -219,12 +219,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Blessing_Player_Burn += Random.Range(1, 15);//percent
-                    blessingText = "Player Deals burn damage also: " + Blessing_Player_Burn + "%";
+                    blessingText = "Player Deals " + Blessing_Player_Burn +" extra burn damage";
                 }
                 else
                 {
                     Blessing_Player_ManaCost += Random.Range(1, 20);//percent
-                    blessingText = "Player Mana Cost reduced + " + Blessing_Player_ManaCost + "%";
+                    blessingText = "Player Mana Cost reduced by " + Blessing_Player_ManaCost + " %";
                 }
                 return blessingText;
             }
@@ -235,17 +235,17 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 66)
                 {
                     Blessing_Player_Attack += Random.Range(5, 200);
-                    blessingText = "Player Base Attack: " + Blessing_Player_Attack;
+                    blessingText = "Player Base Attack increased by " + Blessing_Player_Attack +" %";
                 }
                 else if (groupNum > 33)
                 {
                     Blessing_Player_Attack += Random.Range(5, 30);//percent
-                    blessingText = "Player Base Attack : " + Blessing_Player_Attack+"%";
+                    blessingText = "Player Base Attack increased by " + Blessing_Player_Attack+" %";
                 }
                 else
                 {
                     Blessing_Player_Slow += Random.Range(1, 20);//percent
-                    blessingText = "Player Slows Enemies on hit: " + Blessing_Player_Slow+" %";
+                    blessingText = "Player Slows Enemies on hit by: " + Blessing_Player_Slow+" %";
                 }
                 return blessingText;
             }
@@ -268,22 +268,22 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 75)
                 {
                     Blessing_Player_HP += Random.Range(15, 50);
-                    blessingText = "Player HP: + " + Blessing_Player_HP;
+                    blessingText = "Player HP increased by " + Blessing_Player_HP +" %";
                 }
                 else if (groupNum > 50)
                 {
                     Blessing_Player_HP += Random.Range(5, 20);//percent
-                    blessingText = "Player HP: + " + Blessing_Player_HP + "%";
+                    blessingText = "Player HP increased by " + Blessing_Player_HP + " %";
                 }
                 else if (groupNum > 25)
                 {
                     Blessing_Player_Max_HP += Random.Range(10, 100);
-                    blessingText = "Player MaxHP: + " + Blessing_Player_HP;
+                    blessingText = "Player MaxHP increased by " + Blessing_Player_Max_HP +" %";
                 }
                 else
                 {
                     Blessing_Player_Max_HP += Random.Range(10, 50);//percent
-                    blessingText = "Player MaxHP: + " + Blessing_Player_HP + "%";
+                    blessingText = "Player MaxHP increased by " + Blessing_Player_Max_HP +" %";
                 }
                 return blessingText;
             }
@@ -294,22 +294,22 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 75)
                 {
                     Blessing_Player_MP += Random.Range(15, 60);
-                    blessingText = "Player MP: + " + Blessing_Player_HP;
+                    blessingText = "Player MP: + " + Blessing_Player_MP;
                 }
                 else if (groupNum > 50)
                 {
                     Blessing_Player_MP += Random.Range(5, 40);//percent
-                    blessingText = "Player MP: + " + Blessing_Player_HP + "%";
+                    blessingText = "Player MP: + " + Blessing_Player_MP + " %";
                 }
                 else if (groupNum > 25)
                 {
                     Blessing_Player_Max_MP += Random.Range(10, 100);
-                    blessingText = "Player Max MP: + " + Blessing_Player_HP;
+                    blessingText = "Player Max MP increased by " + Blessing_Player_Max_MP +" %";
                 }
                 else
                 {
                     Blessing_Player_Max_MP += Random.Range(5, 30);//percent
-                    blessingText = "Player Max MP: + " + Blessing_Player_HP + "%";
+                    blessingText = "Player Max MP increased by " + Blessing_Player_Max_MP + " %";
                 }
                 return blessingText;
             }

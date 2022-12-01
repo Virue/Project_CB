@@ -305,11 +305,11 @@ public class AnimationBehavior : MonoBehaviour
     {
         if (myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
-            myControl.Player_Min_HP += (myControl.Player_Max_HP*myControl.Player_LifeSteal/100);
+            myControl.Player_Min_HP += (myControl.Player_Max_HP*(myControl.Player_LifeSteal/100));
         }
         if (myControl.Player_Min_MP < myControl.Player_Max_MP)
         {
-            myControl.Player_Min_MP += (myControl.Player_Max_MP * myControl.Player_ManaSap / 100);
+            myControl.Player_Min_MP += (myControl.Player_Max_MP * (myControl.Player_ManaSap / 100));
         }
         
     }
@@ -338,15 +338,8 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void DeathSteal()
     {
-        
-        if (myControl.Player_Min_HP < myControl.Player_Max_HP)
-        {
-            myControl.Player_Min_HP += (myControl.Player_Max_HP * myControl.Player_LifeSteal / 100);
-        }
-        if (myControl.Player_Min_MP < myControl.Player_Max_MP)
-        {
-            myControl.Player_Min_MP += (myControl.Player_Max_MP * myControl.Player_ManaSap / 100);
-        }
+
+        Steal();
         if (myControl.Player_LifeSteal == 0 && myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
             myControl.Player_Min_HP += 2;

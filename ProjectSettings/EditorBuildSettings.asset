@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SewerMap.unity
     guid: 4e35cbedbc6ba524cbb7d5d813b97cfd
+  - enabled: 1
+    path: Assets/Scenes/Village.unity
+    guid: 48a6c71f4656a784283e92ee9ef916d5
+  - enabled: 1
+    path: Assets/Scenes/CastleHallways.unity
+    guid: 34a1a80b6f92b1b4da79124bf1e1570f
+  - enabled: 1
+    path: Assets/Scenes/ThroneRoom.unity
+    guid: 7f616d9c0626aa94eb9009bc1b255e94
   m_configObjects: {}

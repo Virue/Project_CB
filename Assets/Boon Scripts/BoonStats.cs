@@ -173,12 +173,12 @@ public class BoonStats : MonoBehaviour
                     if (groupNum > 50)
                     {
                         Blessing_Player_LifeSteal += Random.Range(5, 25);
-                        blessingText = "Player LifeSteal on hit: " + Blessing_Player_LifeSteal;
+                        blessingText = "Player LifeSteal on hit: " + Blessing_Player_LifeSteal + " %";
                     }
                     else
                     {
                         Blessing_Player_LifeSteal += Random.Range(2, 10);// percent
-                        blessingText = "Player Lifesteal on Hit " + Blessing_Player_LifeSteal+"%";
+                        blessingText = "Player Lifesteal on Hit " + Blessing_Player_LifeSteal+" %";
                     }
                 }
                 else if (groupNum > 50)
@@ -187,23 +187,23 @@ public class BoonStats : MonoBehaviour
                     if (groupNum > 50)
                     {
                         Blessing_Player_ManaSap += Random.Range(5, 30);
-                        blessingText = "Player Steals Mana: " + Blessing_Player_ManaSap;
+                        blessingText = "Player Steals Mana: " + Blessing_Player_ManaSap + " %";
                     }
                     else
                     {
                         Blessing_Player_ManaSap += Random.Range(1, 15);//percent
-                        blessingText = "Player Steals Mana: " + Blessing_Player_ManaSap+"%";
+                        blessingText = "Player Steals Mana: " + Blessing_Player_ManaSap+" %";
                     }
                 }
                 else if (groupNum > 25)
                 {
                     Blessing_Player_MoveSpeed += Random.Range(1, 20);// percent
-                    blessingText = "Player Movespeed increased " + Blessing_Player_MoveSpeed + "%";
+                    blessingText = "Player Movespeed increased " + Blessing_Player_MoveSpeed + " %";
                 }
                 else
                 {
                     Blessing_Player_DoubleStrike += Random.Range(15, 60); // percent
-                    blessingText = "Player chance to hit twice" + Blessing_Player_DoubleStrike + "%";
+                    blessingText = "Player chance to hit twice" + Blessing_Player_DoubleStrike + " %";
                 }
                 return blessingText;
             }

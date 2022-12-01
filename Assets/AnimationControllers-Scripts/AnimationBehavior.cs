@@ -17,6 +17,8 @@ public class AnimationBehavior : MonoBehaviour
     public BoonStats boonStats;
     PlayerStats stats;
 
+    public bool boss = true;
+
     public Rigidbody myRig;
     public GameObject SwordRender;
     public GameObject AxeRender;
@@ -96,6 +98,7 @@ public class AnimationBehavior : MonoBehaviour
         WandRender = GameObject.Find("WandRender");
         StaffRender = GameObject.Find("StaffRender");
         playercamera.GetComponentInChildren<Camera>();
+        boss = true;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
         SwordRender.SetActive(true);
@@ -106,7 +109,7 @@ public class AnimationBehavior : MonoBehaviour
         StaffRender.SetActive(false);
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
-
+        StartCoroutine(Boss());
         //pressEUI.SetActive(false);
 
 
@@ -168,6 +171,12 @@ public class AnimationBehavior : MonoBehaviour
         }
         
     }
+    public IEnumerator Boss()
+    {
+        yield return new WaitWhile(() => boss);
+        sceneController.sceneScore += 100;
+        sceneController.PlayerDied();
+    }
     public void applyBoon()
     {
         boonApplied = true;
@@ -201,7 +210,10 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Burn -= boonStats.Curse_Player_Burn;
         myControl.Player_Slow += boonStats.Blessing_Player_Slow;
         myControl.Player_Slow -= boonStats.Curse_Player_Slow;
+        myControl.Player_DS += boonStats.Blessing_Player_DoubleStrike;
+        myControl.Player_DS -= boonStats.Curse_Player_DoubleStrike;
         boonApplied = false;
+        sceneController.sceneScore += 10;
         boonStats.Reset();
 
     }
@@ -313,11 +325,26 @@ public class AnimationBehavior : MonoBehaviour
         {
             myControl.Player_Min_HP = myControl.Player_Max_HP;
         }
+        if ((myControl.Player_Min_MP <= 0))
+        {
+            myControl.Player_Min_MP = 0;
+        }
+        if ((myControl.Player_Min_HP <= 0))
+        {
+            myControl.Player_Min_HP = 0;
+        }
     }
     public void DeathSteal()
     {
-        myControl.Player_Min_HP += myControl.Player_LifeSteal;
-        myControl.Player_Min_MP += myControl.Player_ManaSap;
+        sceneController.sceneScore += 20;
+        if (myControl.Player_Min_HP < myControl.Player_Max_HP)
+        {
+            myControl.Player_Min_HP += myControl.Player_LifeSteal;
+        }
+        if (myControl.Player_Min_MP < myControl.Player_Max_MP)
+        {
+            myControl.Player_Min_MP += myControl.Player_ManaSap;
+        }
         if (myControl.Player_LifeSteal == 0 && myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
             myControl.Player_Min_HP += 5;
@@ -347,7 +374,7 @@ public class AnimationBehavior : MonoBehaviour
         die();
         ControlMPHP();
         SendStats();
-        
+        health = myControl.Player_Max_HP;
         myControl.ManaRegen();
         HandleCameraLook();
         burn = myControl.Player_Burn;
@@ -413,7 +440,7 @@ public class AnimationBehavior : MonoBehaviour
                 }
                 if (reset <= 0)
                 {
-                    if (magic && fire && myControl.Player_Min_MP >0)
+                    if (magic && fire && myControl.Player_Min_MP > (10 - (10 * myControl.Player_ManaCost / 100)))
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -425,10 +452,10 @@ public class AnimationBehavior : MonoBehaviour
                         source.clip = magicFire;
                         source.Play();
                         myControl.Player_Min_MP -= 10-(10*myControl.Player_ManaCost/100);
-                        reset = 5;
+                        reset = 3;
                     }
                     else
-                    if (magic && ice && myControl.Player_Min_MP > 0)
+                    if (magic && ice && myControl.Player_Min_MP > (10 - (10 * myControl.Player_ManaCost / 100)))
                     {
                         anim.SetBool("Magic", true);
                         anim.SetTrigger("Attack");
@@ -439,8 +466,8 @@ public class AnimationBehavior : MonoBehaviour
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
                         source.clip = magicIce;
                         source.Play();
-                        reset = 5;
-                        myControl.Player_Min_MP -= 10+(10 * myControl.Player_ManaCost / 100);
+                        reset = 3;
+                        myControl.Player_Min_MP -= 10-(10 * myControl.Player_ManaCost / 100);
                     }
                 }
                 else 

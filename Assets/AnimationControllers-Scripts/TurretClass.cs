@@ -75,7 +75,7 @@ public class TurretClass : MonoBehaviour
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
                         source.clip = sound;
                         source.Play();
-                        reset = 5;
+                        reset = 3;
                     }
 
                 }

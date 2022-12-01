@@ -18,13 +18,14 @@ public class BoonUI : MonoBehaviour
         boonStats = GameObject.Find("Player").GetComponent<BoonStats>();
        // panel = GameObject.Find("Blessing_CurseCanvas").gameObject;
       //  panel.SetActive(false);
-        blessing.text = "" + boonStats.blessingText;
-        curse.text = "" + boonStats.curseText;
+        blessing.text = " " + boonStats.blessingText;
+        curse.text = " " + boonStats.curseText;
     }
 
     // Update is called once per frame
     void Update()
     {
+        boonStats = GameObject.Find("Player").GetComponent<BoonStats>();
         blessing.text = "" + boonStats.blessingText;
         curse.text = "" + boonStats.curseText;
     }

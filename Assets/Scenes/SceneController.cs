@@ -22,7 +22,7 @@ public class SceneController : MonoBehaviour
     public GameObject scoreScreen;
     public GameObject pressEUI;
     public float sceneCounter;
-
+    public float sceneScore;
    // List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class SceneController : MonoBehaviour
         playerHUD.SetActive(false);
         scoreScreen.SetActive(false);
         pressEUI.SetActive(false);
+        sceneScore=0;
         Debug.Log("start");
         Debug.Log("The scene name for the first scene is " + SceneManager.GetSceneAt(0).name);
        // scenesToLoad.Add();

@@ -12,6 +12,7 @@ public class BossController : MonoBehaviour
     public float Enemydamage;
     AudioSource AudioSource;
     public AudioClip hit;
+    public float health;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +24,12 @@ public class BossController : MonoBehaviour
         myControl.health = 200;
         myControl.maxHealth = 200;
         myControl.damageReduction = 0.25f;
-        myControl.Enemy_Attack = playerRig.health;
+        myControl.Enemy_Attack = playerRig.health/10;
         Enemydamage = myControl.Enemy_Attack;
         myControl.vulnerable = 0.0f;
         myControl.burn = 0;
         myControl.slow = 0.04f;
+        health = myControl.health;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -76,7 +78,8 @@ public class BossController : MonoBehaviour
     }
     public IEnumerator BodyDisposal()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
+        playerRig.boss = false;
         Destroy(gameObject);
     }
     void BoonApplied()
@@ -87,6 +90,8 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        myControl.Enemy_Attack = playerRig.health /10;
+        health = myControl.health;
         if (playerRig.boonApplied)
         {
             BoonApplied();

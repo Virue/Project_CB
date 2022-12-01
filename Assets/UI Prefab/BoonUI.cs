@@ -14,18 +14,19 @@ public class BoonUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        boonStats = gameObject.AddComponent<BoonStats>();
+
+        boonStats = GameObject.Find("Player").GetComponent<BoonStats>();
        // panel = GameObject.Find("Blessing_CurseCanvas").gameObject;
       //  panel.SetActive(false);
-        blessing.text = "" + boonStats.getBlessing();
-        curse.text = "" + boonStats.getCurse();
+        blessing.text = "" + boonStats.blessingText;
+        curse.text = "" + boonStats.curseText;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        blessing.text = "" + boonStats.blessingText;
+        curse.text = "" + boonStats.curseText;
     }
     public void toggleOff()
     {

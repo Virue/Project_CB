@@ -78,8 +78,50 @@ public class BoonStats : MonoBehaviour
     void Update()
     {
         
+}
+    public void Reset()
+    {
+        Blessing_Player_HP = 0;
+        Blessing_Player_Max_HP = 0;
+        Blessing_Player_MP = 0;
+        Blessing_Player_Max_MP = 0;
+        Blessing_Player_Attack = 0;
+        Blessing_Player_Burn = 0;
+        Blessing_Player_Slow = 0;
+        Blessing_Player_ManaCost = 0;
+        Blessing_Player_Ammo = 0;
+        Blessing_Player_Damage_Reduction = 0;
+        Blessing_Player_Vulnerable = 0;
+        Blessing_Player_LifeSteal = 0;
+        Blessing_Player_ManaSap = 0;
+        Blessing_Player_MoveSpeed = 0;
+        Blessing_Player_DoubleStrike = 0;
+        Blessing_Enemy_Max_HP = 0; // nerf to enemy hp
+        Blessing_Enemy_Damage = 0; // nerf to enemy DMG
+        Blessing_Player_Luck = 0;
+        Curse_Player_HP = 0;
+        Curse_Player_Max_HP = 0;
+        Curse_Player_MP = 0;
+        Curse_Player_Max_MP = 0;
+        Curse_Player_Attack = 0;
+        Curse_Player_Burn = 0;
+        Curse_Player_Slow = 0;
+        Curse_Player_ManaCost = 0;
+        Curse_Player_Ammo = 0;
+        Curse_Player_Damage_Reduction = 0;
+        Curse_Player_Vulnerable = 0;
+        Curse_Player_LifeSteal = 0;
+        Curse_Player_ManaSap = 0;
+        Curse_Player_MoveSpeed = 0;
+        Curse_Player_DoubleStrike = 0;
+        Curse_Enemy_Max_HP = 0; // buffs to enemy hp
+        Curse_Enemy_Damage = 0; // buffs to enemy DMG
+        Curse_Enemy_Damage = 0; // buffs to enemy DMG
+        Curse_Enemy_Damage = 0; // buffs to enemy DMG
+        Curse_Player_Luck = 0;
+        blessingText = " ";
+        curseText = " ";
     }
-   
     public String getBlessing()
     {
         

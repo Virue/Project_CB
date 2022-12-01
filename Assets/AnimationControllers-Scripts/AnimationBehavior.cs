@@ -174,11 +174,15 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
         myControl.Player_Min_HP -= boonStats.Curse_Player_HP;
         myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
+        myControl.Player_Max_HP += boonStats.Blessing_Player_HP;
+        myControl.Player_Max_HP -= boonStats.Curse_Player_HP;
         myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP;
         myControl.Player_Min_MP += boonStats.Blessing_Player_MP;
         myControl.Player_Min_MP -= boonStats.Curse_Player_MP;
         myControl.Player_Max_MP += boonStats.Blessing_Player_Max_MP;
         myControl.Player_Max_MP -= boonStats.Curse_Player_Max_MP;
+        myControl.Player_Max_MP += boonStats.Blessing_Player_MP;
+        myControl.Player_Max_MP -= boonStats.Curse_Player_MP;
         myControl.Player_LifeSteal += boonStats.Blessing_Player_LifeSteal;
         myControl.Player_LifeSteal -= boonStats.Curse_Player_LifeSteal;
         myControl.Player_ManaSap += boonStats.Blessing_Player_ManaSap;
@@ -200,6 +204,7 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Slow += boonStats.Blessing_Player_Slow;
         myControl.Player_Slow -= boonStats.Curse_Player_Slow;
         boonApplied = false;
+        boonStats.Reset();
 
     }
     public void OnTriggerEnter(Collider other)
@@ -285,8 +290,26 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void Steal()
     {
-        myControl.Player_Min_HP += myControl.Player_LifeSteal;
-        myControl.Player_Min_MP += myControl.Player_ManaSap;
+        if (myControl.Player_Min_HP < myControl.Player_Max_HP)
+        {
+            myControl.Player_Min_HP += myControl.Player_LifeSteal;
+        }
+        if (myControl.Player_Min_MP < myControl.Player_Max_MP)
+        {
+            myControl.Player_Min_MP += myControl.Player_ManaSap;
+        }
+        
+    }
+    public void ControlMPHP()
+    {
+        if ((myControl.Player_Min_MP > myControl.Player_Max_MP))
+        {
+            myControl.Player_Min_MP = myControl.Player_Max_MP;
+        }
+        if ((myControl.Player_Min_HP > myControl.Player_Max_HP))
+        {
+            myControl.Player_Min_HP = myControl.Player_Max_HP;
+        }
     }
     public void DeathSteal()
     {
@@ -319,7 +342,9 @@ public class AnimationBehavior : MonoBehaviour
     void Update()
     {
         die();
+        ControlMPHP();
         SendStats();
+        
         myControl.ManaRegen();
         HandleCameraLook();
         burn = myControl.Player_Burn;
@@ -396,7 +421,7 @@ public class AnimationBehavior : MonoBehaviour
                         p.GetComponent<Rigidbody>().velocity = myRig.transform.forward;
                         source.clip = magicFire;
                         source.Play();
-                        myControl.Player_Min_MP -= 5;
+                        myControl.Player_Min_MP -= 10-(10*myControl.Player_ManaCost/100);
                         reset = 5;
                     }
                     else
@@ -412,7 +437,7 @@ public class AnimationBehavior : MonoBehaviour
                         source.clip = magicIce;
                         source.Play();
                         reset = 5;
-                        myControl.Player_Min_MP -= 10;
+                        myControl.Player_Min_MP -= 10+(10 * myControl.Player_ManaCost / 100);
                     }
                 }
                 else 

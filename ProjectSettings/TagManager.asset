@@ -19,6 +19,7 @@ TagManager:
   - Mage
   - Knight
   - Boss
+  - LevelChange
   layers:
   - Default
   - TransparentFX

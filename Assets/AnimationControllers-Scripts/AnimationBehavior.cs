@@ -207,6 +207,11 @@ public class AnimationBehavior : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag=="LevelChange")
+        {
+            sceneController.sceneCounter++;
+            sceneController.switchScenes();
+        }
         
         if (other.gameObject.tag == "Boon")
         {

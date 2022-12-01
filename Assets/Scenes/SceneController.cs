@@ -21,11 +21,14 @@ public class SceneController : MonoBehaviour
     public GameObject playerHUD;
     public GameObject scoreScreen;
     public GameObject pressEUI;
+    public float sceneCounter;
 
+   // List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     // Start is called before the first frame update
     void Start()
     {
-       // playerStats= new PlayerStats();
+        sceneCounter = 0;
+        // playerStats= new PlayerStats();
         playerHUD = transform.Find("PlayerHUD").gameObject as GameObject;
         scoreScreen = transform.Find("End Screen").gameObject as GameObject;
         pressEUI = transform.Find("Blessing_CurseCanvas").gameObject as GameObject;
@@ -34,7 +37,12 @@ public class SceneController : MonoBehaviour
         pressEUI.SetActive(false);
         Debug.Log("start");
         Debug.Log("The scene name for the first scene is " + SceneManager.GetSceneAt(0).name);
+       // scenesToLoad.Add();
+     //  scenesToLoad.Add();
+      //  scenesToLoad.Add();
+//scenesToLoad.Add();
         SceneManager.sceneLoaded += SceneChanger;
+
     }
 
     // Update is called once per frame
@@ -70,12 +78,50 @@ public class SceneController : MonoBehaviour
             Debug.Log("Setting beenUsed to true!");
             beenUsed = true;
         }
+        if (s.name != SceneManager.GetSceneByBuildIndex(2).name)
+        {
+            Debug.Log("Setting beenUsed to False!");
+            beenUsed = false;
+        }
+        if (s.name != SceneManager.GetSceneByBuildIndex(3).name)
+        {
+            Debug.Log("Setting beenUsed to False!");
+            beenUsed = false;
+        }
+        if (s.name != SceneManager.GetSceneByBuildIndex(4).name)
+        {
+            Debug.Log("Setting beenUsed to False!");
+            beenUsed = false;
+        }
 
     }
     public void switchScenes()
     {
+        if (sceneCounter == 3 && !beenUsed)
+        {
+            Debug.Log("Loading game scene");
+            SceneManager.LoadScene(4, LoadSceneMode.Additive);//Or whatever index you want.
+            playerHUD.SetActive(true);
+            SceneManager.UnloadSceneAsync("CastleHallways");
+        }
+        else if (sceneCounter == 2 && !beenUsed)
+        {
+            Debug.Log("Loading game scene");
+            SceneManager.LoadScene(3, LoadSceneMode.Additive);//Or whatever index you want.
+            playerHUD.SetActive(true);
+            SceneManager.UnloadSceneAsync("Village");
+        }
+        else if (sceneCounter == 1 && !beenUsed)
+        {
+
+            Debug.Log("Loading game scene");
+            SceneManager.LoadScene(2, LoadSceneMode.Additive);//Or whatever index you want.
+            playerHUD.SetActive(true);
+            SceneManager.UnloadSceneAsync("SewerMap");
+        }else 
         if (!beenUsed)
         {
+            
             Debug.Log("Loading game scene");
             SceneManager.LoadScene(1, LoadSceneMode.Additive);//Or whatever index you want.
             playerHUD.SetActive(true);
@@ -87,6 +133,7 @@ public class SceneController : MonoBehaviour
             Debug.Log("Loading Menu scene");
             SceneManager.LoadScene(0);
         }
+        
     }
     public IEnumerator EndGame()
     {

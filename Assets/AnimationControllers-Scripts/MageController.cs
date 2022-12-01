@@ -12,6 +12,7 @@ public class MageController : MonoBehaviour
     public float Enemydamage;
     AudioSource AudioSource;
     public AudioClip hit;
+    public AudioClip Criticalhit;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,18 +40,20 @@ public class MageController : MonoBehaviour
 
         if (((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) || ((other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health > 0))
         {
-            AudioSource.clip = hit;
-            AudioSource.Play();
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
 
             myControl.doublestrike = Random.Range(0, 100);
             if (myControl.doublestrike < playerRig.doubleStrike)
             {
+                AudioSource.clip = Criticalhit;
+                AudioSource.Play();
                 myControl.health -= 2 * playerRig.damage + playerRig.burn;
             }
             else
             {
+                AudioSource.clip = hit;
+                AudioSource.Play();
                 myControl.health -= playerRig.damage + playerRig.burn;
             }
 

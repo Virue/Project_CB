@@ -693,6 +693,7 @@ MonoBehaviour:
   scoreScreen: {fileID: 455325606}
   pressEUI: {fileID: 0}
   sceneCounter: 0
+  sceneScore: 0
 --- !u!4 &237773972
 Transform:
   m_ObjectHideFlags: 0

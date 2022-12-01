@@ -103,7 +103,7 @@ public class ActorScript : MonoBehaviour
             else
             if (distancetoPlayer.magnitude > detectionRadius)
             {
-                if (myNav.remainingDistance == 0 || myNav.remainingDistance < 0.5)
+                if (myNav.remainingDistance == 0 || myNav.remainingDistance < 2.0f)
                 {
                     if (goal == 0)
                     {

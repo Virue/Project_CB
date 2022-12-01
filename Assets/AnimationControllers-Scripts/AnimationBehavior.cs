@@ -183,13 +183,11 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
         myControl.Player_Min_HP -= (myControl.Player_Min_HP*(boonStats.Curse_Player_HP/100));
         myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
-        myControl.Player_Max_HP += boonStats.Blessing_Player_HP;
         myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP;
         myControl.Player_Min_MP += boonStats.Blessing_Player_MP;
         myControl.Player_Min_MP -= boonStats.Curse_Player_MP;
         myControl.Player_Max_MP += boonStats.Blessing_Player_Max_MP;
         myControl.Player_Max_MP -= boonStats.Curse_Player_Max_MP;
-        myControl.Player_Max_MP += boonStats.Blessing_Player_MP;
         myControl.Player_LifeSteal += boonStats.Blessing_Player_LifeSteal;
         myControl.Player_LifeSteal -= boonStats.Curse_Player_LifeSteal;
         myControl.Player_ManaSap += boonStats.Blessing_Player_ManaSap;
@@ -343,20 +341,20 @@ public class AnimationBehavior : MonoBehaviour
         
         if (myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
-            myControl.Player_Min_HP += myControl.Player_LifeSteal;
+            myControl.Player_Min_HP += (myControl.Player_Max_HP * myControl.Player_LifeSteal / 100);
         }
         if (myControl.Player_Min_MP < myControl.Player_Max_MP)
         {
-            myControl.Player_Min_MP += myControl.Player_ManaSap;
+            myControl.Player_Min_MP += (myControl.Player_Max_MP * myControl.Player_ManaSap / 100);
         }
         if (myControl.Player_LifeSteal == 0 && myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
-            myControl.Player_Min_HP += 5;
+            myControl.Player_Min_HP += 2;
         }
     }
     private void die()
     {
-        if (myControl.Player_Min_HP<=0) 
+        if (myControl.Player_Min_HP<=0 || myControl.Player_Max_HP <= 0) 
         {
             anim.SetBool("Death", true);
             myControl.Player_Min_HP = 0;

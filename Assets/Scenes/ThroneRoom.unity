@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: c402eb97a9eff894886f24380c0b8c01, type: 3}
     - target: {fileID: 1731663524, guid: 2d5ac477f020a6f439c68d64b7b66087, type: 3}
       propertyPath: detectionRadius
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3482150204297408758, guid: 2d5ac477f020a6f439c68d64b7b66087, type: 3}
       propertyPath: m_Name
@@ -4160,7 +4160,7 @@ GameObject:
   - component: {fileID: 1497663817}
   m_Layer: 0
   m_Name: Goal1
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5351,7 +5351,7 @@ GameObject:
   - component: {fileID: 1911763683}
   m_Layer: 0
   m_Name: Goal2
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

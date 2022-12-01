@@ -20,6 +20,7 @@ TagManager:
   - Knight
   - Boss
   - LevelChange
+  - Goal
   layers:
   - Default
   - TransparentFX

@@ -461,6 +461,7 @@ MonoBehaviour:
   playerRig: {fileID: 0}
   Enemydamage: 0
   hit: {fileID: 8300000, guid: b74d2d9e40c43f44187c127b9b3d6566, type: 3}
+  Criticalhit: {fileID: 8300000, guid: 9c200701a26fd454b833536da2b1d34c, type: 3}
 --- !u!114 &971282622
 MonoBehaviour:
   m_ObjectHideFlags: 0

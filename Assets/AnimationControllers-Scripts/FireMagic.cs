@@ -24,11 +24,15 @@ public class FireMagic : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Goal")
+        { 
         GameObject g = Instantiate(explosion, p.transform.position, transform.rotation);
         Rigidbody pRig = g.GetComponent<Rigidbody>();
         pRig.position = p.transform.position - p.transform.right * 5.0f;
         Debug.Log("magic Collided with" +other.name);
         Destroy(gameObject);
+        }
+        
     }
     // Update is called once per frame
     void Update()

@@ -13,8 +13,12 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag!="Goal")
+        { 
         p.velocity = Vector3.zero;
         Destroy(gameObject);
+        }
+        
     }
     // Update is called once per frame
     void Update()

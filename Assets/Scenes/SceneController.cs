@@ -38,10 +38,10 @@ public class SceneController : MonoBehaviour
         sceneScore=0;
         Debug.Log("start");
         Debug.Log("The scene name for the first scene is " + SceneManager.GetSceneAt(0).name);
-       // scenesToLoad.Add();
-     //  scenesToLoad.Add();
+        // scenesToLoad.Add();
+       //scenesToLoad.Add();
       //  scenesToLoad.Add();
-//scenesToLoad.Add();
+     //scenesToLoad.Add();
         SceneManager.sceneLoaded += SceneChanger;
 
     }
@@ -160,7 +160,6 @@ public class SceneController : MonoBehaviour
         pressEUI.SetActive(false);
         scoreScreen.SetActive(true);
         score.text = "Score: " + timer.score+"\n";
-
         score.text += "Time: ";
         float t = Time.timeSinceLevelLoad; //scene loaded
 
@@ -177,6 +176,9 @@ public class SceneController : MonoBehaviour
     {
         Debug.Log("Loading game scene");
         SceneManager.LoadScene(0, LoadSceneMode.Single);//Or whatever index you want.
+        playerHUD.SetActive(false);
+        pressEUI.SetActive(false);
+        scoreScreen.SetActive(false);
         Debug.Log("Loaded game scene");
     }
    

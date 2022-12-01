@@ -1697,10 +1697,10 @@ RectTransform:
   m_Father: {fileID: 6829288418388632232}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4274063, y: 0.41985536}
-  m_AnchorMax: {x: 0.5063437, y: 0.575434}
-  m_AnchoredPosition: {x: 0, y: 0.40000153}
-  m_SizeDelta: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.43178126, y: 0.423}
+  m_AnchorMax: {x: 0.51087505, y: 0.57855976}
+  m_AnchoredPosition: {x: 0.30000305, y: -0.5}
+  m_SizeDelta: {x: -1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7507624146889867276
 CanvasRenderer:
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.87279415, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

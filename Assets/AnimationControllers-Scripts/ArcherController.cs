@@ -76,6 +76,7 @@ public class ArcherController : MonoBehaviour
     public IEnumerator BodyDisposal()
     {
         yield return new WaitForSeconds(5.0f);
+        playerRig.playerKillPoints();
         Destroy(gameObject);
     }
     void BoonApplied()

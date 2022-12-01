@@ -79,6 +79,7 @@ public class BossController : MonoBehaviour
     public IEnumerator BodyDisposal()
     {
         yield return new WaitForSeconds(2.0f);
+        playerRig.playerKillPoints();
         playerRig.boss = false;
         Destroy(gameObject);
     }

@@ -307,11 +307,11 @@ public class AnimationBehavior : MonoBehaviour
     {
         if (myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
-            myControl.Player_Min_HP += myControl.Player_LifeSteal;
+            myControl.Player_Min_HP += (myControl.Player_Max_HP*myControl.Player_LifeSteal/100);
         }
         if (myControl.Player_Min_MP < myControl.Player_Max_MP)
         {
-            myControl.Player_Min_MP += myControl.Player_ManaSap;
+            myControl.Player_Min_MP += (myControl.Player_Max_MP * myControl.Player_ManaSap / 100);
         }
         
     }
@@ -334,9 +334,13 @@ public class AnimationBehavior : MonoBehaviour
             myControl.Player_Min_HP = 0;
         }
     }
+    public void playerKillPoints()
+    { 
+        sceneController.sceneScore += 20;
+    }
     public void DeathSteal()
     {
-        sceneController.sceneScore += 20;
+        
         if (myControl.Player_Min_HP < myControl.Player_Max_HP)
         {
             myControl.Player_Min_HP += myControl.Player_LifeSteal;

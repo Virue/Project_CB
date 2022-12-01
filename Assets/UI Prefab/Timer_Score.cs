@@ -37,7 +37,7 @@ public class Timer_Score : MonoBehaviour
     void Update()
     {
        setClockText();
-       //setScoreText();
+       setScoreText();
     }
     
 }

@@ -73,6 +73,7 @@ public class PlayerStats : MonoBehaviour
         if (name == "Player_ManaCost") { return playerController.Player_ManaCost; }
         if (name == "Player_Burn") { return playerController.Player_Burn; }
         if (name == "Player_Slow") { return playerController.Player_Slow; }
+        if (name == "Player_Damage") { return playerController.Player_Damage; }
         else
         {
             return 0;
@@ -114,6 +115,8 @@ public class PlayerStats : MonoBehaviour
         { playerController.Player_Burn = value; }
         if (name == "Player_Slow")
         { playerController.Player_Slow = value; }
+        if (name == "Player_Damage")
+        { playerController.Player_Damage = value; }
     }
     // Update is called once per frame
     void Update()

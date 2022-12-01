@@ -51,7 +51,7 @@ public class AnimationBehavior : MonoBehaviour
     public bool Bow = true;
     public bool fire = false;
     public bool ice = false;
-    public float basedamage=5;
+    public float basedamage;
     public float damage;
     public float health;
 
@@ -86,7 +86,7 @@ public class AnimationBehavior : MonoBehaviour
         boonStats.gameObject.GetComponent<BoonStats>();
         SetStats();
         source = GetComponent<AudioSource>();
-        damage = 15;
+        damage = (18 + myControl.Player_Damage) + ((18 + myControl.Player_Damage) * (myControl.Player_Vuln / 100)); ;
         //pressEUI = GameObject.Find("Blessing_CurseCanvas");
         health = myControl.Player_Max_HP;
         SwordRender = GameObject.Find("SwordRender");
@@ -95,8 +95,6 @@ public class AnimationBehavior : MonoBehaviour
         BowRender = GameObject.Find("BowRender");
         WandRender = GameObject.Find("WandRender");
         StaffRender = GameObject.Find("StaffRender");
-
-        damage = (18 + basedamage) + ((18 + basedamage) * (myControl.Player_Vuln / 100));
         playercamera.GetComponentInChildren<Camera>();
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
@@ -135,6 +133,7 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_ManaCost = stats.ReturnStat("Player_Mana_Cost");
         myControl.Player_Burn = stats.ReturnStat("Player_Burn");
         myControl.Player_Slow = stats.ReturnStat("Player_Slow");
+        myControl.Player_Damage = stats.ReturnStat("Player_Damage");
     }
     public void SendStats()
     {
@@ -155,6 +154,7 @@ public class AnimationBehavior : MonoBehaviour
         stats.SetStat("Player_ManaCost", myControl.Player_ManaCost);
         stats.SetStat("Player_Burn", myControl.Player_Burn);
         stats.SetStat("Player_Slow", myControl.Player_Slow);
+        stats.SetStat("Player_Damage", myControl.Player_Damage);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -172,17 +172,15 @@ public class AnimationBehavior : MonoBehaviour
     {
         boonApplied = true;
         myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
-        myControl.Player_Min_HP -= boonStats.Curse_Player_HP;
+        myControl.Player_Min_HP -= (myControl.Player_Min_HP*(boonStats.Curse_Player_HP/100));
         myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
         myControl.Player_Max_HP += boonStats.Blessing_Player_HP;
-        myControl.Player_Max_HP -= boonStats.Curse_Player_HP;
         myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP;
         myControl.Player_Min_MP += boonStats.Blessing_Player_MP;
         myControl.Player_Min_MP -= boonStats.Curse_Player_MP;
         myControl.Player_Max_MP += boonStats.Blessing_Player_Max_MP;
         myControl.Player_Max_MP -= boonStats.Curse_Player_Max_MP;
         myControl.Player_Max_MP += boonStats.Blessing_Player_MP;
-        myControl.Player_Max_MP -= boonStats.Curse_Player_MP;
         myControl.Player_LifeSteal += boonStats.Blessing_Player_LifeSteal;
         myControl.Player_LifeSteal -= boonStats.Curse_Player_LifeSteal;
         myControl.Player_ManaSap += boonStats.Blessing_Player_ManaSap;
@@ -197,8 +195,8 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Luck -= boonStats.Curse_Player_Luck;
         myControl.Player_ManaCost += boonStats.Blessing_Player_ManaCost;
         myControl.Player_ManaCost -= boonStats.Curse_Player_ManaCost;
-        basedamage += basedamage * (boonStats.Blessing_Player_Attack / 100);
-        basedamage -= basedamage * (boonStats.Curse_Player_Attack / 100);
+        myControl.Player_Damage += myControl.Player_Damage * (boonStats.Blessing_Player_Attack / 100);
+        myControl.Player_Damage -= myControl.Player_Damage * (boonStats.Curse_Player_Attack / 100);
         myControl.Player_Burn += boonStats.Blessing_Player_Burn;
         myControl.Player_Burn -= boonStats.Curse_Player_Burn;
         myControl.Player_Slow += boonStats.Blessing_Player_Slow;

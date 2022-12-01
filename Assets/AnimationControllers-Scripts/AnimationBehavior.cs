@@ -374,7 +374,7 @@ public class AnimationBehavior : MonoBehaviour
         HandleCameraLook();
         burn = myControl.Player_Burn;
         slow = myControl.Player_Slow;
-        doubleStrike = myControl.Player_DS;
+        doubleStrike = myControl.Player_DS+myControl.Player_Luck;
         if (stats.acceptBoon == true)
         {
             applyBoon();

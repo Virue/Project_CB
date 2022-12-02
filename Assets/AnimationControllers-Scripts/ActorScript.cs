@@ -87,7 +87,8 @@ public class ActorScript : MonoBehaviour
 
                 player = GameObject.Find("Player").transform.position;
                 myNav.destination = player;
-                if (myNav.remainingDistance <= 2.0f)
+                
+                if (myNav.remainingDistance <= 1.0f)
                 {
                     if (reset <= 0)
                     {
@@ -103,19 +104,20 @@ public class ActorScript : MonoBehaviour
             else
             if (distancetoPlayer.magnitude > detectionRadius)
             {
-                if (myNav.remainingDistance == 0 || myNav.remainingDistance < 2.0f)
+                if (myNav.remainingDistance <= 1 )
                 {
                     if (goal == 0)
                     {
-                        goal++;
+                        
                         myNav.destination = goal2;
+                        goal++;
                         myNav.Resume();
                     }
                     else
                     if (goal == 1)
                     {
-                        goal = 0;
                         myNav.destination = goal1;
+                        goal = 0;
                         myNav.Resume();
                     }
                 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using UnityEditor.SearchService;
+//using UnityEditor.SearchService;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PanelHandler : MonoBehaviour

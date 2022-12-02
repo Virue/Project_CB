@@ -346,12 +346,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_Damage_Reduction += Random.Range(5, 15);//percent
-                    curseText = "Player Deals less damage" + Curse_Player_Damage_Reduction+"%";
+                    curseText = "Player takes more damage" + Curse_Player_Damage_Reduction+" %";
                 }
                 else
                 {
                     Curse_Player_Vulnerable += Random.Range(1, 15);//percent
-                    curseText = "Player Takes more damage:  " + Curse_Player_Vulnerable+"%";
+                    curseText = "Player deals less damage:  " + Curse_Player_Vulnerable+" %";
                 }
                 return curseText;
             }
@@ -362,22 +362,22 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 75)
                 {
                     Curse_Player_LifeSteal += Random.Range(1, 90);//percent
-                    curseText = "Player loses lifesteal stat " + Curse_Player_LifeSteal+"%";
+                    curseText = "Player loses " + Curse_Player_LifeSteal+ " % Lifesteal";
                 }
                 else if (groupNum > 50)
                 {
                     Curse_Player_ManaSap += Random.Range(1, 80);//percent
-                    curseText = "Player Loses manasap stat:  " + Curse_Player_ManaSap + "%";
+                    curseText = "Player Loses " + Curse_Player_ManaSap + " % Manasap stat";
                 }
                 else if (groupNum > 25)
                 {
                     Curse_Player_MoveSpeed += Random.Range(1, 7);//percent
-                    curseText = "Player Gets slowed down by " + Curse_Player_MoveSpeed + " %";
+                    curseText = "Player slows enemies by" + Curse_Player_MoveSpeed + " %";
                 }
                 else
                 {
                     Curse_Player_DoubleStrike += Random.Range(1, 10);//percent
-                    curseText = "Player loses some chance to double strike:" + Curse_Player_DoubleStrike + "%";
+                    curseText = "Player loses " + Curse_Player_DoubleStrike + " % chance to double strike:";
                 }
                 return curseText;
             }
@@ -397,7 +397,7 @@ public class BoonStats : MonoBehaviour
                 else if (groupNum > 33)
                 {
                     Curse_Player_Slow += Random.Range(1, 90);//percent
-                    curseText = "Player Slows reduced by " + Curse_Player_Slow + " %";
+                    curseText = "Player Slow reduced by " + Curse_Player_Slow + " %";
                 }
                 else
                 {
@@ -418,7 +418,7 @@ public class BoonStats : MonoBehaviour
                 else
                 {
                     Curse_Player_Ammo += Random.Range(1, 90);//percent
-                    curseText = "Player loses Ammo: " + Curse_Player_Ammo+"%";
+                    curseText = "Player loses Ammo: " + Curse_Player_Ammo+" %";
                 }
                 return curseText;
             }
@@ -440,7 +440,7 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_HP += Random.Range(1, 90);//percent
-                    curseText = "Player loses hp: " + Curse_Player_HP+" %";
+                    curseText = "Player loses " + Curse_Player_HP +" % of HP";
                 }
                 else
                 {
@@ -456,12 +456,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_MP += Random.Range(1, 90);//percent
-                    curseText = "Player loses Mana " + Curse_Player_MP + " %";
+                    curseText = "Player loses " + Curse_Player_MP + " % Mana";
                 }
                 else
                 {
                     Curse_Player_Max_MP += Random.Range(1, 90);//percent
-                    curseText = "Player Loses max mana: " + Curse_Player_Max_MP+" %";
+                    curseText = "Player Loses " + Curse_Player_Max_MP+" % Max Mana";
                 }
                 return curseText;
             }

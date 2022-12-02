@@ -57,6 +57,13 @@ public class PlayerController : Stats
     // Update is called once per frame
     void Update()
     {
-        
+        if (Player_LifeSteal < 0)
+        {
+            Player_LifeSteal = 0;
+        }
+        if (Player_ManaSap < 0)
+        {
+            Player_ManaSap = 0;
+        }
     }
 }

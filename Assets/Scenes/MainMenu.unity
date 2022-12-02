@@ -2906,7 +2906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4142008063537422801, guid: cdf7d282f0ff0ed44ab88d9b8328ccb9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4142008063596545488, guid: cdf7d282f0ff0ed44ab88d9b8328ccb9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3067,7 +3067,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3554204893489961202, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554204894235446744, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
+      propertyPath: m_text
+      value: 'Use the WASD to move
+
+        Left click to attack
+
+        Right click
+        to switch weapons'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3554204894235446744, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
+      propertyPath: m_fontSize
+      value: 28.15
       objectReference: {fileID: 0}
     - target: {fileID: 3554204894235446744, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_enableAutoSizing
@@ -3261,7 +3274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8811423699930568443, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: 1.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 8811423699930568443, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
       propertyPath: m_AnchoredPosition.y

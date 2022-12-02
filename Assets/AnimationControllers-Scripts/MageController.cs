@@ -38,7 +38,7 @@ public class MageController : MonoBehaviour
     {
 
 
-        if (((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) || ((other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health > 0))
+        if (((other.tag == "PlayerWeapon") && myControl.health > 0 && playerRig.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) || ( other.tag == "IceBall") && myControl.health > 0)
         {
             myControl.TakeDamage();
             anim.SetTrigger("Damage");
@@ -66,7 +66,7 @@ public class MageController : MonoBehaviour
             }
         }
 
-        if ((other.tag == "PlayerWeapon" || other.tag == "FireBall" || other.tag == "IceBall" || other.tag == "Arrow") && myControl.health <= 0)
+        if ((other.tag == "PlayerWeapon" || other.tag == "IceBall") && myControl.health <= 0)
         {
             Debug.Log("Enemy: Death Damage Taken " + playerRig.damage + " from " + other.name);
             myRig.constraints = RigidbodyConstraints.FreezeAll;

@@ -137,6 +137,8 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Burn = stats.ReturnStat("Player_Burn");
         myControl.Player_Slow = stats.ReturnStat("Player_Slow");
         myControl.Player_Damage = stats.ReturnStat("Player_Damage");
+        myControl.enemyDamage = stats.ReturnStat("enemyDamage");
+        myControl.enemyHealthBuff = stats.ReturnStat("enemyHealthBuff");
     }
     public void SendStats()
     {
@@ -158,6 +160,8 @@ public class AnimationBehavior : MonoBehaviour
         stats.SetStat("Player_Burn", myControl.Player_Burn);
         stats.SetStat("Player_Slow", myControl.Player_Slow);
         stats.SetStat("Player_Damage", myControl.Player_Damage);
+        stats.SetStat("enemyDamage", myControl.enemyDamage);
+        stats.SetStat("enemyHealthBuff", myControl.enemyHealthBuff);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -210,6 +214,10 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Slow -= boonStats.Curse_Player_Slow;
         myControl.Player_DS += boonStats.Blessing_Player_DoubleStrike;
         myControl.Player_DS -= boonStats.Curse_Player_DoubleStrike;
+        myControl.enemyDamage += boonStats.Curse_Enemy_Damage;
+        myControl.enemyDamage -= boonStats.Blessing_Enemy_Damage;
+        myControl.enemyHealthBuff += boonStats.Curse_Enemy_Max_HP;
+        myControl.enemyHealthBuff -= boonStats.Blessing_Enemy_Max_HP;
         boonApplied = false;
         sceneController.sceneScore += 10;
         boonStats.Reset();
@@ -228,6 +236,7 @@ public class AnimationBehavior : MonoBehaviour
             Debug.Log("Player Collided with Boon");
             //pressEUI.SetActive(true);
             sceneController.BoonUIActivate();
+            boonStats.Reset();
             boonStats.getBlessing();
             boonStats.getCurse();
             //MainCamera.GetComponentInChildren<Camera>();
@@ -370,6 +379,8 @@ public class AnimationBehavior : MonoBehaviour
         ControlMPHP();
         SendStats();
         health = myControl.Player_Max_HP;
+        enemyDamage = myControl.enemyDamage;
+        enemyHealthBuff = myControl.enemyHealthBuff;
         myControl.ManaRegen();
         HandleCameraLook();
         burn = myControl.Player_Burn;
@@ -380,6 +391,7 @@ public class AnimationBehavior : MonoBehaviour
             applyBoon();
             stats.acceptBoon = false;
         }
+        
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");

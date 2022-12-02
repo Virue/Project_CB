@@ -134,12 +134,12 @@ public class BoonStats : MonoBehaviour
             if (groupNum > 50)
             {
                 Blessing_Enemy_Max_HP += Random.Range(5, 25); //percent
-                blessingText = "Player Mana Cost Down:  " + Blessing_Player_ManaCost;
+                blessingText = "Enemy health reduced by " + Blessing_Enemy_Max_HP +" %";
             }
             else
             {
                 Blessing_Enemy_Damage += Random.Range(1, 15); //percent
-                blessingText = "Player Mana Cost Down: " + Blessing_Player_ManaCost;
+                blessingText = "Enemy Damage reduced by " + Blessing_Enemy_Damage+" %";
             }
             return blessingText;
         }
@@ -327,12 +327,12 @@ public class BoonStats : MonoBehaviour
             if (groupNum > 50)
             {
                 Curse_Enemy_Max_HP += Random.Range(5, 15);//percent
-                curseText = "Player Max HP Down:  " + Curse_Enemy_Max_HP+"%";
+                curseText = "Enemy Max HP increased by " + Curse_Enemy_Max_HP+" %";
             }
             else
             {
                 Curse_Enemy_Damage += Random.Range(1, 15);//percent
-                curseText = "Enemy Damage up :  " + Curse_Enemy_Damage + "%";
+                curseText = "Enemy Damage up by " + Curse_Enemy_Damage + "%";
             }
             return curseText;
         }
@@ -372,7 +372,7 @@ public class BoonStats : MonoBehaviour
                 else if (groupNum > 25)
                 {
                     Curse_Player_MoveSpeed += Random.Range(1, 7);//percent
-                    curseText = "Player Gets slowed down:  " + Curse_Player_MoveSpeed + "%";
+                    curseText = "Player Gets slowed down by " + Curse_Player_MoveSpeed + " %";
                 }
                 else
                 {
@@ -392,12 +392,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 66)
                 {
                     Curse_Player_Burn += Random.Range(1, 90);//percent
-                    curseText = "Player takes burn damage on hit?:  " + Curse_Player_Burn + "%";
+                    curseText = "Player burn damage reduced by " + Curse_Player_Burn;
                 }
                 else if (groupNum > 33)
                 {
                     Curse_Player_Slow += Random.Range(1, 90);//percent
-                    curseText = "Player Slows down on hit" + Curse_Player_Slow + "%";
+                    curseText = "Player Slows reduced by " + Curse_Player_Slow + " %";
                 }
                 else
                 {
@@ -413,7 +413,7 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_Attack += Random.Range(1, 90);//percent
-                    curseText = "Player base Attack down  " + Curse_Player_Attack+"%";
+                    curseText = "Player Base damage reduced by " + Curse_Player_Attack+" %";
                 }
                 else
                 {
@@ -427,7 +427,7 @@ public class BoonStats : MonoBehaviour
         {
             Debug.Log("Pull from group G11");
             Curse_Player_Luck += Random.Range(1, 90);//percent
-            curseText = "Player Loses Luck: " + Curse_Player_Luck+"%";
+            curseText = "Player Loses Luck: " + Curse_Player_Luck+" %";
             return curseText;
         }
         else if (BoonNum > 80 && BoonNum<90)
@@ -440,12 +440,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_HP += Random.Range(1, 90);//percent
-                    curseText = "Player loses hp: " + Curse_Player_HP+"%";
+                    curseText = "Player loses hp: " + Curse_Player_HP+" %";
                 }
                 else
                 {
                     Curse_Player_Max_HP += Random.Range(1, 90);//percent
-                    curseText = "Player Mana Cost Down:  " + Curse_Player_Max_HP + "%";
+                    curseText = "Player Max HP reduced by " + Curse_Player_Max_HP + " %";
                 }
                 return curseText;
             }
@@ -456,12 +456,12 @@ public class BoonStats : MonoBehaviour
                 if (groupNum > 50)
                 {
                     Curse_Player_MP += Random.Range(1, 90);//percent
-                    curseText = "Player loses Mana " + Curse_Player_MP + "%";
+                    curseText = "Player loses Mana " + Curse_Player_MP + " %";
                 }
                 else
                 {
                     Curse_Player_Max_MP += Random.Range(1, 90);//percent
-                    curseText = "Player Loses max mana: " + Curse_Player_Max_MP+"%";
+                    curseText = "Player Loses max mana: " + Curse_Player_Max_MP+" %";
                 }
                 return curseText;
             }

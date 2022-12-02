@@ -22,8 +22,6 @@ public class PlayerStats : MonoBehaviour
     public TextMeshProUGUI LifeStealText;
     public TextMeshProUGUI ManaSapText;
     public TextMeshProUGUI DoubleStrikeText;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +34,8 @@ public class PlayerStats : MonoBehaviour
         DMGREDText.text = "Armor: " + playerController.Player_DR.ToString() + "%";
         VulnText.text = "Vuln: " + playerController.Player_Vuln.ToString() + "%";
         LuckText.text = "Luck: " + playerController.Player_Luck.ToString();
-        LifeStealText.text = "LifeSteal: " + playerController.Player_LifeSteal.ToString();
-        ManaSapText.text = "ManaSap: " + playerController.Player_ManaSap.ToString();
+        LifeStealText.text = "LifeSteal: " + playerController.Player_LifeSteal.ToString()+" %";
+        ManaSapText.text = "ManaSap: " + playerController.Player_ManaSap.ToString()+" %";
         DoubleStrikeText.text = "Double Strike: " + playerController.Player_DS.ToString()+"%";
 
     }
@@ -74,6 +72,8 @@ public class PlayerStats : MonoBehaviour
         if (name == "Player_Burn") { return playerController.Player_Burn; }
         if (name == "Player_Slow") { return playerController.Player_Slow; }
         if (name == "Player_Damage") { return playerController.Player_Damage; }
+        if (name == "enemyHealthBuff") { return playerController.enemyHealthBuff; }
+        if (name == "enemyDamage") { return playerController.enemyDamage; }
         else
         {
             return 0;
@@ -117,6 +117,10 @@ public class PlayerStats : MonoBehaviour
         { playerController.Player_Slow = value; }
         if (name == "Player_Damage")
         { playerController.Player_Damage = value; }
+        if (name == "enemyDamage")
+        { playerController.enemyDamage = value; }
+        if (name == "enemyHealthBuff")
+        { playerController.enemyHealthBuff = value; }
     }
     // Update is called once per frame
     void Update()
@@ -134,8 +138,8 @@ public class PlayerStats : MonoBehaviour
         DMGREDText.text = "Armor: " + playerController.Player_DR.ToString() + " %";
         VulnText.text = "Vuln: " + playerController.Player_Vuln.ToString() + " %";
         LuckText.text = "Luck: " + playerController.Player_Luck.ToString();
-        LifeStealText.text = "LifeSteal: " + playerController.Player_LifeSteal.ToString();
-        ManaSapText.text = "ManaSap: " + playerController.Player_ManaSap.ToString();
+        LifeStealText.text = "LifeSteal: " + playerController.Player_LifeSteal.ToString()+" %";
+        ManaSapText.text = "ManaSap: " + playerController.Player_ManaSap.ToString()+" %";
         DoubleStrikeText.text = "Double Strike: " + playerController.Player_DS.ToString() + " %";
     }
 }

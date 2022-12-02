@@ -22,6 +22,8 @@ public class PlayerController : Stats
     public float Player_Burn;
     public float Player_Slow;
     public float Player_Damage;
+    public float enemyHealthBuff;
+    public float enemyDamage;
     // Start is called before the first frame update+
     void Start()
     {

@@ -556,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.061000004, y: 0.80500007}
   m_AnchorMax: {x: 0.9324211, y: 0.94000006}
-  m_AnchoredPosition: {x: -0.9095268, y: 2.899994}
+  m_AnchoredPosition: {x: -0.90953064, y: 2.899994}
   m_SizeDelta: {x: 5.1049805, y: -4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194885547
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.05
+  m_fontSize: 28.55
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1037,6 +1037,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 237773972}
     m_Modifications:
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.53467536
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 16.98999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1.6100006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.033997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821845770862469655, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.695961
+      objectReference: {fileID: 0}
     - target: {fileID: 3971029702993348955, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1056,6 +1080,14 @@ PrefabInstance:
     - target: {fileID: 6138275123192609435, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
       propertyPath: m_fontSize
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138275123192609435, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_margin.w
+      value: 0.0022583008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138275123192609435, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
+      propertyPath: m_margin.x
+      value: 14.616211
       objectReference: {fileID: 0}
     - target: {fileID: 6138275123192609435, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
       propertyPath: m_enableAutoSizing
@@ -1167,7 +1199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6829288418388632236, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6829288418496649411, guid: bc4db3c703d2e4245b3ced27e9fd5ca8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1316,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.061000004, y: 0.555}
   m_AnchorMax: {x: 0.9324211, y: 0.6774856}
-  m_AnchoredPosition: {x: -0.9070244, y: -0.19998169}
+  m_AnchoredPosition: {x: -0.9070282, y: -0.19998169}
   m_SizeDelta: {x: 5.100006, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559337952
@@ -1366,7 +1398,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.3
+  m_fontSize: 32.75
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1692,7 +1724,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 26.25
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1838,7 +1870,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.7
+  m_fontSize: 32.55
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2058,7 +2090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.061000004, y: 0.6774856}
   m_AnchorMax: {x: 0.9324211, y: 0.80500007}
-  m_AnchoredPosition: {x: -0.90851974, y: -0.19999695}
+  m_AnchoredPosition: {x: -0.90852356, y: -0.19999695}
   m_SizeDelta: {x: 5.100006, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187956780
@@ -2108,7 +2140,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 23.75
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2528,7 +2560,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.9
+  m_fontSize: 32.8
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3067,7 +3099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3554204893489961202, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3554204894235446744, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_text
@@ -3116,7 +3148,7 @@ PrefabInstance:
       objectReference: {fileID: 352059515}
     - target: {fileID: 3554204895232677395, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.4000244
+      value: -2.400055
       objectReference: {fileID: 0}
     - target: {fileID: 3554204895232677395, guid: 35bdf308bd9fadb41a4d724445ee0271, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3274,7 +3306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8811423699930568443, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.9999695
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8811423699930568443, guid: 423a35fa18fb3a547bd720aeffeaed03, type: 3}
       propertyPath: m_AnchoredPosition.y

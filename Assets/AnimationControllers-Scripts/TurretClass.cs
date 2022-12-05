@@ -83,7 +83,7 @@ public class TurretClass : MonoBehaviour
         }
         else 
         {
-            
+            myNav.enabled = false;
         }
         
     }

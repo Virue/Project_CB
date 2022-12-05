@@ -23,7 +23,7 @@ public class KnightController : MonoBehaviour
         AudioSource = GetComponent<AudioSource>();
         myControl.health = 80;
         myControl.maxHealth = 80;
-        myControl.Enemy_Attack = 20;
+        myControl.Enemy_Attack = 25;
         Enemydamage = myControl.Enemy_Attack;
         myControl.damageReduction = 0.20f;
         myControl.vulnerable = 0.10f;
@@ -69,6 +69,7 @@ public class KnightController : MonoBehaviour
             Debug.Log("Enemy: Death Damage Taken " + playerRig.damage + " from " + other.name);
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             playerRig.DeathSteal();
+            myRig.GetComponent<CapsuleCollider>().enabled = false;
             anim.SetBool("Death", true);
             StartCoroutine(BodyDisposal());
         }

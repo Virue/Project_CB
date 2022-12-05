@@ -72,6 +72,7 @@ public class MageController : MonoBehaviour
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             playerRig.DeathSteal();
             anim.SetBool("Death", true);
+            myRig.GetComponent<CapsuleCollider>().enabled = false;
             StartCoroutine(BodyDisposal());
         }
 

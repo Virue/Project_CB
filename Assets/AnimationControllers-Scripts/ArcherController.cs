@@ -70,6 +70,7 @@ public class ArcherController : MonoBehaviour
             Debug.Log("Enemy: Death Damage Taken " + playerRig.damage + " from " + other.name);
             myRig.constraints = RigidbodyConstraints.FreezeAll;
             playerRig.DeathSteal();
+            myRig.GetComponent<CapsuleCollider>().enabled = false;
             anim.SetBool("Death", true);
             StartCoroutine(BodyDisposal());
         }

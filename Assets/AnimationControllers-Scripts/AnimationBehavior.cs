@@ -187,7 +187,8 @@ public class AnimationBehavior : MonoBehaviour
         myControl.Player_Min_HP += boonStats.Blessing_Player_HP; 
         myControl.Player_Min_HP -= (myControl.Player_Min_HP*(boonStats.Curse_Player_HP/100));
         myControl.Player_Max_HP += boonStats.Blessing_Player_Max_HP;
-        myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP;
+        myControl.Player_Min_HP += boonStats.Blessing_Player_Max_HP;
+        myControl.Player_Max_HP -= boonStats.Curse_Player_Max_HP * (boonStats.Curse_Player_Max_HP / 100);
         myControl.Player_Min_MP += boonStats.Blessing_Player_MP;
         myControl.Player_Min_MP -= boonStats.Curse_Player_MP;
         myControl.Player_Max_MP += boonStats.Blessing_Player_Max_MP;
@@ -230,7 +231,6 @@ public class AnimationBehavior : MonoBehaviour
             sceneController.sceneCounter++;
             sceneController.switchScenes();
         }
-        
         if (other.gameObject.tag == "Boon")
         {
             Debug.Log("Player Collided with Boon");
@@ -248,13 +248,18 @@ public class AnimationBehavior : MonoBehaviour
         }
         if (other.gameObject.tag == "SkeletonWeapon" && damagereset<=0)
         {
-            Debug.Log("Player Hit by Skeleton");
-            skeletonController = GameObject.FindGameObjectWithTag("Skeleton").GetComponent<SkeletonController>();
+            //Debug.Log("Player Hit by Skeleton");
+            skeletonController = other.gameObject.GetComponentInParent<SkeletonController>();
+            if (skeletonController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                Debug.Log("Player Hit by Skeleton");
                 source.clip = Hit;
                 source.Play();
                 myControl.Player_Min_HP -= skeletonController.Enemydamage-(skeletonController.Enemydamage*(myControl.Player_DR/100));
                 Debug.Log("Player took " + skeletonController.Enemydamage);
                 damagereset = 1;
+            }
+                
             
             
         }
@@ -278,32 +283,42 @@ public class AnimationBehavior : MonoBehaviour
                 source.clip = Hit;
                 source.Play();
                 myControl.Player_Min_HP -= archerController.Enemydamage - (archerController.Enemydamage * (myControl.Player_DR / 100));
-            Debug.Log("Player took " + archerController.Enemydamage);
+                Debug.Log("Player took " + archerController.Enemydamage);
                 damagereset = 1;
 
         }
         if (other.gameObject.tag == "KnightWeapon" && damagereset <= 0)
         {
-            knightController = GameObject.FindGameObjectWithTag("Knight").GetComponent<KnightController>();
-            
+            knightController = other.gameObject.GetComponentInParent<KnightController>();
+            if (knightController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            { 
                 Debug.Log("Player Hit by Knight");
                 source.clip = Hit;
                 source.Play();
                 myControl.Player_Min_HP -= knightController.Enemydamage - (knightController.Enemydamage * (myControl.Player_DR / 100));
                 Debug.Log("Player took " + knightController.Enemydamage);
                 damagereset = 1;
+            
+            }
+                
 
 
         }
         if (other.gameObject.tag == "BossWeapon" && damagereset <= 0)
         {
+                
+            
                 Debug.Log("Player Hit by Boss");
-                bossController = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossController>();
-                source.clip = Hit;
-                source.Play();
-                myControl.Player_Min_HP -= bossController.Enemydamage - (bossController.Enemydamage * (myControl.Player_DR / 100));
-            Debug.Log("Player took " + bossController.Enemydamage);
-                damagereset = 1;
+                bossController = other.gameObject.GetComponentInParent<BossController>();
+            if (bossController.anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                { 
+                    source.clip = Hit;
+                    source.Play();
+                    myControl.Player_Min_HP -= bossController.Enemydamage - (bossController.Enemydamage * (myControl.Player_DR / 100));
+                    Debug.Log("Player took " + bossController.Enemydamage);
+                    damagereset = 1;
+                }
+                
 
 
         }
@@ -348,20 +363,21 @@ public class AnimationBehavior : MonoBehaviour
     public void DeathSteal()
     {
 
-        Steal();
+        //Steal();
         if (myControl.Player_LifeSteal == 0 && myControl.Player_Min_HP < myControl.Player_Max_HP && myControl.Player_Min_HP > 0)
         {
-            myControl.Player_Min_HP += 2;
+            //myControl.Player_Min_HP += 2;
         }
     }
     private void die()
     {
-        if (myControl.Player_Min_HP<=0 || myControl.Player_Max_HP <= 0) 
+        if (myControl.Player_Min_HP<=0 || myControl.Player_Max_HP <= 0 || anim.GetCurrentAnimatorStateInfo(0).IsName("Death")) 
         {
             anim.SetBool("Death", true);
-            myControl.Player_Min_HP = 0;
             sceneController.PlayerDied();
-            Debug.Log("Player Died");
+            
+            //sceneController.PlayerDied();
+            //Debug.Log("Player Died");
         }
     }
 
@@ -391,7 +407,15 @@ public class AnimationBehavior : MonoBehaviour
             applyBoon();
             stats.acceptBoon = false;
         }
-        
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Magic") || anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            myRig.constraints = RigidbodyConstraints.FreezePosition;
+        }
+        else
+        {
+            myRig.constraints = RigidbodyConstraints.None;
+            myRig.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        }
         CollisionUnder = false;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");

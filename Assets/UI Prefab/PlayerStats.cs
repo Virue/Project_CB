@@ -134,6 +134,14 @@ public class PlayerStats : MonoBehaviour
         {
             mpTran.localScale = new Vector3(playerController.Player_Min_MP / (float)playerController.Player_Max_MP, 1f, 1f);
         }
+        if (playerController.Player_LifeSteal < 0)
+        {
+            playerController.Player_LifeSteal = 0;
+        }
+        if (playerController.Player_ManaSap < 0)
+        {
+            playerController.Player_ManaSap = 0;
+        }
         moveSpeedText.text = "MoveSpeed: " + playerController.Player_MS.ToString();
         DMGREDText.text = "Armor: " + playerController.Player_DR.ToString() + " %";
         VulnText.text = "Vuln: " + playerController.Player_Vuln.ToString() + " %";

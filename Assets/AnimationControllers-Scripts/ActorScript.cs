@@ -49,24 +49,24 @@ public class ActorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
-        {
-            BoonApplied();
-        }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
             myRig.constraints = RigidbodyConstraints.FreezeAll;
-            goal1 = myRig.position;
-            myNav.destination = goal1;
-            weaponCollider.enabled=!weaponCollider.enabled;
+
+            myNav.enabled = false;
+            weaponCollider.enabled = !weaponCollider.enabled;
             StartCoroutine(DeleteBody());
-            
+
         }
         else
         {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
+                    {
+                        BoonApplied();
+                    }
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                myRig.constraints = RigidbodyConstraints.FreezeAll;
+                myRig.constraints = RigidbodyConstraints.FreezePosition;
             }
             else
             {
@@ -87,8 +87,9 @@ public class ActorScript : MonoBehaviour
 
                 player = GameObject.Find("Player").transform.position;
                 myNav.destination = player;
-                
-                if (myNav.remainingDistance <= 1.0f)
+                Vector3 forward = transform.forward;
+                Vector3 toOther = (GameObject.Find("Player").transform.position - transform.position).normalized;
+                if (myNav.remainingDistance <= 1.0f && Vector3.Dot(forward, toOther) > 0.7f)
                 {
                     if (reset <= 0)
                     {

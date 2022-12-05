@@ -4534,6 +4534,7 @@ GameObject:
   - component: {fileID: 5900135543292501469}
   - component: {fileID: 5778579023937477989}
   - component: {fileID: 2643682851676245142}
+  - component: {fileID: 802982156608892780}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Knight
@@ -4713,11 +4714,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3.2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 100
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -4737,7 +4738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30e132681e0aba4c8f4cfc3cdd9ac00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 0
+  detectionRadius: 20
   reset: 0
   weaponCollider: {fileID: 6006146077295408362}
   myRig: {fileID: 0}
@@ -4843,6 +4844,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &802982156608892780
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640903277242237294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5723966141338263726
 GameObject:
   m_ObjectHideFlags: 0

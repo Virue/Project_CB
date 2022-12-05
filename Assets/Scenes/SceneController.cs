@@ -28,7 +28,7 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         sceneCounter = 0;
-        // playerStats= new PlayerStats();
+        playerStats= new PlayerStats();
         playerHUD = transform.Find("PlayerHUD").gameObject as GameObject;
         scoreScreen = transform.Find("End Screen").gameObject as GameObject;
         pressEUI = transform.Find("Blessing_CurseCanvas").gameObject as GameObject;
@@ -53,7 +53,7 @@ public class SceneController : MonoBehaviour
     }
     public void PlayerDied() 
     {
-        health = false;
+        StartCoroutine(EndGame());
     }
     public void Awake()
     {
@@ -127,7 +127,7 @@ public class SceneController : MonoBehaviour
             SceneManager.LoadScene(1, LoadSceneMode.Additive);//Or whatever index you want.
             playerHUD.SetActive(true);
             Debug.Log("Loaded game scene");
-            StartCoroutine(EndGame());
+            //StartCoroutine(EndGame());
         }
         else
         {
@@ -138,7 +138,7 @@ public class SceneController : MonoBehaviour
     }
     public IEnumerator EndGame()
     {
-        yield return new WaitWhile(()=>health);
+        yield return new WaitForSeconds(2.0f);
         endScene();
     }
     public void BoonUIActivate()
@@ -153,7 +153,7 @@ public class SceneController : MonoBehaviour
     }
     public void endScene()
     {
-        cameralock.MainCamera.GetComponent<Camera>();
+        //cameralock.MainCamera.GetComponent<Camera>();
         Cursor.lockState= CursorLockMode.None;
         Cursor.visible = true;
         playerHUD.SetActive(false);
@@ -180,6 +180,7 @@ public class SceneController : MonoBehaviour
         pressEUI.SetActive(false);
         scoreScreen.SetActive(false);
         Debug.Log("Loaded game scene");
+        Destroy(gameObject);
     }
    
    

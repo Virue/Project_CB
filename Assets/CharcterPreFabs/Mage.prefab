@@ -2005,6 +2005,7 @@ GameObject:
   - component: {fileID: 1481371931}
   - component: {fileID: 1481371932}
   - component: {fileID: -7937846087261376091}
+  - component: {fileID: 6989808764361986764}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Mage
@@ -2300,6 +2301,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6989808764361986764
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437741541484389566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7461466238304084022
 GameObject:
   m_ObjectHideFlags: 0

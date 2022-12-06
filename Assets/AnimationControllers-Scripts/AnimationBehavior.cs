@@ -380,6 +380,10 @@ public class AnimationBehavior : MonoBehaviour
             //Debug.Log("Player Died");
         }
     }
+    public void heal(float health)
+    {
+        myControl.Player_Min_HP += health;    
+    }
 
     private void HandleCameraLook()
     {

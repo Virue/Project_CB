@@ -322,8 +322,100 @@ public class AnimationBehavior : MonoBehaviour
 
 
         }
-
-
+        if (other.gameObject.tag == "Bow")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+          //  sceneController.BoonUIActivate();
+           // boonStats.Reset();
+          //  boonStats.getBlessing();
+          //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+          //  Cursor.lockState = CursorLockMode.Confined;
+        //    Cursor.visible = true;
+            Debug.Log("Bow");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "Sword")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+            //  sceneController.BoonUIActivate();
+            // boonStats.Reset();
+            //  boonStats.getBlessing();
+            //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+           // Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.visible = true;
+            Debug.Log("Sword");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "Axe")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+            //  sceneController.BoonUIActivate();
+            // boonStats.Reset();
+            //  boonStats.getBlessing();
+            //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+            //Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.visible = true;
+            Debug.Log("Axe");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "Mace")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+            //  sceneController.BoonUIActivate();
+            // boonStats.Reset();
+            //  boonStats.getBlessing();
+            //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+            //Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.visible = true;
+            Debug.Log("Mace");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "Staff")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+            //  sceneController.BoonUIActivate();
+            // boonStats.Reset();
+            //  boonStats.getBlessing();
+            //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+            //Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.visible = true;
+            Debug.Log("Staff");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "Wand")
+        {
+            Debug.Log("Player Collided with Weapon");
+            //pressEUI.SetActive(true);
+            //  sceneController.BoonUIActivate();
+            // boonStats.Reset();
+            //  boonStats.getBlessing();
+            //  boonStats.getCurse();
+            //MainCamera.GetComponentInChildren<Camera>();
+            //Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.visible = true;
+            Debug.Log("Wand");
+            Object.Destroy(other.gameObject);
+            //Debug.Log("UI");
+        }
+        if (other.gameObject.tag == "WeaponPickUp")
+        {
+            Debug.Log("weapon pick up item hit");
+        }
     }
     public void Steal()
     {

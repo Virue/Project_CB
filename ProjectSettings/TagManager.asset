@@ -26,6 +26,7 @@ TagManager:
   - Mace
   - Staff
   - Wand
+  - Bow
   layers:
   - Default
   - TransparentFX

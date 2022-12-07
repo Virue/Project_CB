@@ -110,12 +110,7 @@ public class AnimationBehavior : MonoBehaviour
         anim.SetBool("Bow", false);
         anim.SetBool("Magic", false);
         StartCoroutine(Boss());
-        //pressEUI.SetActive(false);
-
-
-
-
-
+       
     }
     public void SetStats()
     { 
@@ -326,13 +321,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-          //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
            // boonStats.Reset();
           //  boonStats.getBlessing();
           //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-          //  Cursor.lockState = CursorLockMode.Confined;
-        //    Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Bow");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");
@@ -341,13 +336,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-            //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
             // boonStats.Reset();
             //  boonStats.getBlessing();
             //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-           // Cursor.lockState = CursorLockMode.Confined;
-            //Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Sword");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");
@@ -356,13 +351,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-            //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
             // boonStats.Reset();
             //  boonStats.getBlessing();
             //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-            //Cursor.lockState = CursorLockMode.Confined;
-            //Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Axe");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");
@@ -371,13 +366,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-            //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
             // boonStats.Reset();
             //  boonStats.getBlessing();
             //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-            //Cursor.lockState = CursorLockMode.Confined;
-            //Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Mace");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");
@@ -386,13 +381,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-            //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
             // boonStats.Reset();
             //  boonStats.getBlessing();
             //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-            //Cursor.lockState = CursorLockMode.Confined;
-            //Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Staff");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");
@@ -401,13 +396,13 @@ public class AnimationBehavior : MonoBehaviour
         {
             Debug.Log("Player Collided with Weapon");
             //pressEUI.SetActive(true);
-            //  sceneController.BoonUIActivate();
+            sceneController.WeaponUIActivate();
             // boonStats.Reset();
             //  boonStats.getBlessing();
             //  boonStats.getCurse();
-            //MainCamera.GetComponentInChildren<Camera>();
-            //Cursor.lockState = CursorLockMode.Confined;
-            //Cursor.visible = true;
+            MainCamera.GetComponentInChildren<Camera>();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             Debug.Log("Wand");
             Object.Destroy(other.gameObject);
             //Debug.Log("UI");

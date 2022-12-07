@@ -6,9 +6,9 @@ using UnityEngine;
 public class WeaponUI : MonoBehaviour
 {
     WeaponStats weaponStats;
-    public TextMeshProUGUI Weapon1;
-    public TextMeshProUGUI Weapon2;
-    public TextMeshProUGUI newWeapon;
+   // public TextMeshProUGUI Weapon1;
+  //  public TextMeshProUGUI Weapon2;
+  //  public TextMeshProUGUI newWeapon;
     public GameObject panel;//weaponTrade
     //attack
     public TextMeshProUGUI Attack;

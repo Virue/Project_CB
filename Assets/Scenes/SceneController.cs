@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour
     public GameObject playerHUD;
     public GameObject scoreScreen;
     public GameObject pressEUI;
+    public GameObject WeaponUI;
     public float sceneCounter;
     public float sceneScore;
    // List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
@@ -32,6 +33,7 @@ public class SceneController : MonoBehaviour
         playerHUD = transform.Find("PlayerHUD").gameObject as GameObject;
         scoreScreen = transform.Find("End Screen").gameObject as GameObject;
         pressEUI = transform.Find("Blessing_CurseCanvas").gameObject as GameObject;
+        WeaponUI = transform.Find("WeaponTrade").gameObject as GameObject;
         playerHUD.SetActive(false);
         scoreScreen.SetActive(false);
         pressEUI.SetActive(false);
@@ -148,6 +150,16 @@ public class SceneController : MonoBehaviour
     public void BoonUIDeActivate()
     {
         pressEUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    public void WeaponUIActivate()
+    {
+        WeaponUI.SetActive(true);
+    }
+    public void WeaponUIDeActivate()
+    {
+        WeaponUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

@@ -22432,6 +22432,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 188621776882295713, guid: 3a2e295f0158e1d42a32e0a82a161e63, type: 3}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1422881239}
     - target: {fileID: 1254428795092668094, guid: 3a2e295f0158e1d42a32e0a82a161e63, type: 3}
       propertyPath: m_RootOrder
       value: 40
@@ -22485,6 +22489,11 @@ PrefabInstance:
 --- !u!1 &1422881238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1883473294073877508, guid: 3a2e295f0158e1d42a32e0a82a161e63, type: 3}
+  m_PrefabInstance: {fileID: 1422881237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1422881239 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 188621777761095346, guid: 3a2e295f0158e1d42a32e0a82a161e63, type: 3}
   m_PrefabInstance: {fileID: 1422881237}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1432703443
@@ -28881,24 +28890,48 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wand
       objectReference: {fileID: 0}
+    - target: {fileID: 2565181905061455156, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
+      value: Wand
+      objectReference: {fileID: 0}
     - target: {fileID: 2565181905220645400, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
       propertyPath: m_Name
+      value: Axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565181905220645400, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
       value: Axe
       objectReference: {fileID: 0}
     - target: {fileID: 2565181905570403245, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
       propertyPath: m_Name
       value: Staff
       objectReference: {fileID: 0}
+    - target: {fileID: 2565181905570403245, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
+      value: Staff
+      objectReference: {fileID: 0}
     - target: {fileID: 2565181905669984786, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
       propertyPath: m_Name
+      value: Mace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565181905669984786, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
       value: Mace
       objectReference: {fileID: 0}
     - target: {fileID: 2565181905972199175, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 2565181905972199175, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 2565181906598648021, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
       propertyPath: m_Name
+      value: Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565181906598648021, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}
+      propertyPath: m_TagString
       value: Bow
       objectReference: {fileID: 0}
     - target: {fileID: 2565181906876424908, guid: e2b4a1cdaec05274ebc518eb5054064e, type: 3}

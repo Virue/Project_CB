@@ -27,6 +27,7 @@ public class WeaponRender : MonoBehaviour
         if (weaponPicker > 84)
         {
             SwordRender.SetActive(true);
+            gameObject.tag = "Sword";
             AxeRender.SetActive(false);
             MaceRender.SetActive(false);
             BowRender.SetActive(false);
@@ -37,6 +38,7 @@ public class WeaponRender : MonoBehaviour
         {
             SwordRender.SetActive(false);
             AxeRender.SetActive(true);
+            gameObject.tag = "Axe";
             MaceRender.SetActive(false);
             BowRender.SetActive(false);
             WandRender.SetActive(false);
@@ -47,6 +49,7 @@ public class WeaponRender : MonoBehaviour
             SwordRender.SetActive(false);
             AxeRender.SetActive(false);
             MaceRender.SetActive(true);
+            gameObject.tag = "Mace";
             BowRender.SetActive(false);
             WandRender.SetActive(false);
             StaffRender.SetActive(false);
@@ -57,6 +60,7 @@ public class WeaponRender : MonoBehaviour
             AxeRender.SetActive(false);
             MaceRender.SetActive(false);
             BowRender.SetActive(true);
+            gameObject.tag = "Bow";
             WandRender.SetActive(false);
             StaffRender.SetActive(false);
         }
@@ -67,6 +71,7 @@ public class WeaponRender : MonoBehaviour
             MaceRender.SetActive(false);
             BowRender.SetActive(false);
             WandRender.SetActive(true);
+            gameObject.tag = "Wand";
             StaffRender.SetActive(false);
         }
         else
@@ -77,6 +82,7 @@ public class WeaponRender : MonoBehaviour
             BowRender.SetActive(false);
             WandRender.SetActive(false);
             StaffRender.SetActive(true);
+            gameObject.tag = "Staff";
         }
     }
 

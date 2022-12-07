@@ -21,6 +21,11 @@ TagManager:
   - Boss
   - LevelChange
   - Goal
+  - Sword
+  - Axe
+  - Mace
+  - Staff
+  - Wand
   layers:
   - Default
   - TransparentFX
